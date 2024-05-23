@@ -1,4 +1,2 @@
-package data.user;
-
-public class Student {
+package data.user;public class Student {
 }

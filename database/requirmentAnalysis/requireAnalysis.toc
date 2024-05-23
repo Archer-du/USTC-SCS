@@ -1,0 +1,6 @@
+\contentsline {section}{\numberline {1}整体需求}{1}{}%
+\contentsline {section}{\numberline {2}实体功能}{2}{}%
+\contentsline {subsection}{\numberline {2.1}管理员}{2}{}%
+\contentsline {subsection}{\numberline {2.2}学生}{2}{}%
+\contentsline {subsection}{\numberline {2.3}老师}{2}{}%
+\contentsline {subsection}{\numberline {2.4}课程、专业}{3}{}%
