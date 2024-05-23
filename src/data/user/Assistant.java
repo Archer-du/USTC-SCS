@@ -1,2 +1,4 @@
-package data.user;public class Assistant {
+package data.user;
+
+public class Assistant extends Student{
 }
