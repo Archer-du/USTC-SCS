@@ -1,6 +1,9 @@
 # USTC-SCS
 
-## prerequisites
+---
+
+## 开发规范
+
 1. 在github上fork此仓库
 2. 将fork的仓库克隆到本地
 3. 在本地将此远程仓库添加为远端，命名为upstream
