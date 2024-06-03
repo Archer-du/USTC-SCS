@@ -8,6 +8,7 @@ public class Class {
     private double credit;  //学分
     private String book;    //教材
     private String courseIntro;  //课程简介
+
     public Class() {
     }
 
