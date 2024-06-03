@@ -1,57 +1,56 @@
 package data.course;
 
 public class Class {
-    private String className;   //课程名称
-    private String classType;   //课程类型
+    private String courseName;   //课程名称
+    private String courseType;   //课程类型
     private int theoryHour;     //理论课学时
     private int labHour;    //实验课学时
     private double credit;  //学分
     private String book;    //教材
-    private String classIntro;  //课程简介
-
+    private String courseIntro;  //课程简介
     public Class() {
     }
 
-    public Class(String className, String classType, int theoryHour, int labHour, double credit, String book, String classIntro) {
-        this.className = className;
-        this.classType = classType;
+    public Class(String courseName, String courseType, int theoryHour, int labHour, double credit, String book, String courseIntro) {
+        this.courseName = courseName;
+        this.courseType = courseType;
         this.theoryHour = theoryHour;
         this.labHour = labHour;
         this.credit = credit;
         this.book = book;
-        this.classIntro = classIntro;
+        this.courseIntro = courseIntro;
     }
 
     /**
      * 获取
-     * @return className
+     * @return courseName
      */
-    public String getClassName() {
-        return className;
+    public String getCourseName() {
+        return courseName;
     }
 
     /**
      * 设置
-     * @param className
+     * @param courseName
      */
-    public void setClassName(String className) {
-        this.className = className;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     /**
      * 获取
-     * @return classType
+     * @return courseType
      */
-    public String getClassType() {
-        return classType;
+    public String getCourseType() {
+        return courseType;
     }
 
     /**
      * 设置
-     * @param classType
+     * @param courseType
      */
-    public void setClassType(String classType) {
-        this.classType = classType;
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
     }
 
     /**
@@ -120,21 +119,21 @@ public class Class {
 
     /**
      * 获取
-     * @return classIntro
+     * @return courseIntro
      */
-    public String getClassIntro() {
-        return classIntro;
+    public String getCourseIntro() {
+        return courseIntro;
     }
 
     /**
      * 设置
-     * @param classIntro
+     * @param courseIntro
      */
-    public void setClassIntro(String classIntro) {
-        this.classIntro = classIntro;
+    public void setCourseIntro(String courseIntro) {
+        this.courseIntro = courseIntro;
     }
 
     public String toString() {
-        return "Class{className = " + className + ", classType = " + classType + ", theoryHour = " + theoryHour + ", labHour = " + labHour + ", credit = " + credit + ", book = " + book + ", classIntro = " + classIntro + "}";
+        return "Class{courseName = " + courseName + ", courseType = " + courseType + ", theoryHour = " + theoryHour + ", labHour = " + labHour + ", credit = " + credit + ", book = " + book + ", courseIntro = " + courseIntro + "}";
     }
 }

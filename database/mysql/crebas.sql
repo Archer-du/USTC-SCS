@@ -4,6 +4,10 @@
 /*==============================================================*/
 
 
+
+drop database if exists scs;
+create database scs;
+use scs;
 drop table if exists Assist;
 
 drop table if exists Assistant;
@@ -18,7 +22,7 @@ drop table if exists Teach;
 
 drop table if exists Teacher;
 
-drop table if exists User;
+drop table if exists Users;
 
 drop table if exists administrator;
 
@@ -52,11 +56,11 @@ create table Assistant
 /*==============================================================*/
 create table Course
 (
-   courseID             varchar(12) not null,
-   openSemester         varchar(6) not null,
-   classTime            varchar(10) not null,
+   courseId             varchar(12) not null,
+   openSemester         varchar(12) not null,
+   classTime            varchar(20) not null,
    firstWeek            int not null,
-   primary key (courseID)
+   primary key (courseId)
 );
 
 /*==============================================================*/
@@ -108,13 +112,13 @@ create table Teacher
 /*==============================================================*/
 /* Table: User                                                  */
 /*==============================================================*/
-create table User
+create table Users
 (
    userName             varchar(20) not null,
    password             varchar(20) not null,
    idCard               varchar(18),
    ID                   varchar(12) not null,
-   email                varchar(20),
+   email                varchar(30),
    primary key (ID)
 );
 
@@ -135,7 +139,7 @@ create table class
 (
    courseID             varchar(12) not null,
    courseName           varchar(10) not null,
-   CourseType           varchar(10) not null,
+   courseType           varchar(10) not null,
    theoryHour           int not null,
    credit               decimal(2,1) not null,
    book                 varchar(12) not null,
@@ -152,6 +156,7 @@ create table selectCourse
    ID                   varchar(12) not null,
    courseID             varchar(12) not null,
    maxNum               int not null,
+   selectNum			int not null,
    primary key (ID, courseID)
 );
 
@@ -180,7 +185,7 @@ alter table Student add constraint FK_major foreign key (majorID)
       references Major (majorID) on delete restrict on update restrict;
 
 alter table Student add constraint FK_user_stu foreign key (ID)
-      references User (ID) on delete restrict on update restrict;
+      references Users (ID) on delete restrict on update restrict;
 
 alter table Teach add constraint FK_Teach foreign key (courseID)
       references Course (courseID) on delete restrict on update restrict;
@@ -189,10 +194,10 @@ alter table Teach add constraint FK_Teach2 foreign key (ID)
       references Teacher (ID) on delete restrict on update restrict;
 
 alter table Teacher add constraint FK_user_teacher foreign key (ID)
-      references User (ID) on delete restrict on update restrict;
+      references Users (ID) on delete restrict on update restrict;
 
 alter table administrator add constraint FK_user_administrator foreign key (ID)
-      references User (ID) on delete restrict on update restrict;
+      references Users (ID) on delete restrict on update restrict;
 
 alter table class add constraint FK_course_class foreign key (courseID)
       references Course (courseID) on delete restrict on update restrict;

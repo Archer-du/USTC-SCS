@@ -4,19 +4,19 @@ public class User {
     private String account;     //用户名
     private String password;    //密码
     private String name;    //姓名
-    private String id;  //学号、工号
+    private String ID;  //学号、工号
     private String email;   //电子邮箱
     private String idCard;  //身份证号
 
     public User() {
     }
 
-    public User(String account, String password, String name, String id, String phone, String idCard) {
+    public User(String account, String password, String name, String ID, String email, String idCard) {
         this.account = account;
         this.password = password;
         this.name = name;
-        this.id = id;
-        this.phone = phone;
+        this.ID = ID;
+        this.email = email;
         this.idCard = idCard;
     }
 
@@ -70,18 +70,18 @@ public class User {
 
     /**
      * 获取
-     * @return id
+     * @return ID
      */
-    public String getId() {
-        return id;
+    public String getID() {
+        return ID;
     }
 
     /**
      * 设置
-     * @param id
+     * @param ID
      */
-    public void setId(String id) {
-        this.id = id;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     /**
@@ -117,6 +117,6 @@ public class User {
     }
 
     public String toString() {
-        return "User{account = " + account + ", password = " + password + ", name = " + name + ", id = " + id + ", phone = " + phone + ", idCard = " + idCard + "}";
+        return "User{account = " + account + ", password = " + password + ", name = " + name + ", ID = " + ID + ", email = " + email + ", idCard = " + idCard + "}";
     }
 }
