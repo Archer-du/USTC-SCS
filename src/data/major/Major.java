@@ -1,10 +1,14 @@
 package data.major;
 
-public class Major {
-    private String majorID;
-    private String majorName;
-    private String majorIntro;
+import data.user.Student;
 
+import java.util.ArrayList;
+
+public class Major {
+    private String majorID;     //专业号
+    private String majorName;   //专业名称
+    private String majorIntro;  //专业介绍
+    private ArrayList<Student> stuList; //当前专业学生
     public Major() {
     }
 

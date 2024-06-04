@@ -1,4 +1,4 @@
-package dao;
+package dao.base;
 
 import java.lang.reflect.Field;
 import java.sql.*;
@@ -78,7 +78,17 @@ public abstract class BaseDAO {
                 for(int i = 0;i<columnCount;i++){
                     Object columValue = rs.getObject(i+1);
                     String columnLabel = rsmd.getColumnLabel(i+1);
-                    Field field = clazz.getDeclaredField(columnLabel);
+                    Field field;
+                    try{
+                        field= clazz.getDeclaredField(columnLabel);
+                    }catch (NoSuchFieldException e){
+                        try{
+                            field = clazz.getSuperclass().getDeclaredField(columnLabel);
+                        }
+                        catch (NoSuchFieldException e1){
+                            field = clazz.getSuperclass().getSuperclass().getDeclaredField(columnLabel);
+                        }
+                    }
                     field.setAccessible(true);
                     field.set(t,columValue);
                 }
@@ -110,7 +120,17 @@ public abstract class BaseDAO {
                 for(int i = 0;i<columnCount;i++){
                     Object columValue = rs.getObject(i+1);
                     String columnLabel = rsmd.getColumnLabel(i+1);
-                    Field field = clazz.getDeclaredField(columnLabel);
+                    Field field;
+                    try{
+                        field= clazz.getDeclaredField(columnLabel);
+                    }catch (NoSuchFieldException e){
+                        try{
+                            field = clazz.getSuperclass().getDeclaredField(columnLabel);
+                        }
+                        catch (NoSuchFieldException e1){
+                            field = clazz.getSuperclass().getSuperclass().getDeclaredField(columnLabel);
+                        }
+                    }
                     field.setAccessible(true);
                     field.set(t,columValue);
                 }

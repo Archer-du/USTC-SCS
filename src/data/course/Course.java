@@ -7,23 +7,62 @@ import data.user.Teacher;
 import java.util.ArrayList;
 
 public class Course {
-    private String courseName;      //课程名称
     private String courseId;    //课程号
-
+    private String courseName;  //课程名称
+    private String courseType;  //课程类型
+    private int theoryHour;     //理论课学时
+    private int labHour;    //实验课学时
+    private double credit;  //学分
+    private String book;    //参考教材
+    private String courseIntro; //课程简介
     private String openSemester;    //开课学期
     private String classTime;     //上课时间
     private int firstWeek;       //上课首周
 
-
+    private ArrayList<Student> studentList;  //选择该课程的学生
+    private ArrayList<Teacher> teacherList;  //授课老师
+    private ArrayList<Assistant> assistantList;  //助教天团
     public Course() {
     }
-
-    public Course(String courseName, String courseId, String openSemester, String classTime, int firstWeek) {
-        this.courseName = courseName;
+    public Course(String courseId, String courseName, String courseType, int theoryHour, int labHour, double credit, String openSemester, String classTime, int firstWeek) {
         this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseType = courseType;
+        this.theoryHour = theoryHour;
+        this.labHour = labHour;
+        this.credit = credit;
         this.openSemester = openSemester;
         this.classTime = classTime;
         this.firstWeek = firstWeek;
+    }
+    public Course(String courseId, String courseName, String courseType, int theoryHour, int labHour, double credit, String book, String courseIntro, String openSemester, String classTime, int firstWeek) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseType = courseType;
+        this.theoryHour = theoryHour;
+        this.labHour = labHour;
+        this.credit = credit;
+        this.book = book;
+        this.courseIntro = courseIntro;
+        this.openSemester = openSemester;
+        this.classTime = classTime;
+        this.firstWeek = firstWeek;
+    }
+
+    /**
+     * 获取
+     * @return courseId
+     */
+    public String getCourseId() {
+        return courseId;
+    }
+
+    /**
+     * 设置
+     * @param courseId
+     */
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 
     /**
@@ -44,18 +83,98 @@ public class Course {
 
     /**
      * 获取
-     * @return courseId
+     * @return courseType
      */
-    public String getCourseId() {
-        return courseId;
+    public String getCourseType() {
+        return courseType;
     }
 
     /**
      * 设置
-     * @param courseId
+     * @param courseType
      */
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
+    }
+
+    /**
+     * 获取
+     * @return theoryHour
+     */
+    public int getTheoryHour() {
+        return theoryHour;
+    }
+
+    /**
+     * 设置
+     * @param theoryHour
+     */
+    public void setTheoryHour(int theoryHour) {
+        this.theoryHour = theoryHour;
+    }
+
+    /**
+     * 获取
+     * @return labHour
+     */
+    public int getLabHour() {
+        return labHour;
+    }
+
+    /**
+     * 设置
+     * @param labHour
+     */
+    public void setLabHour(int labHour) {
+        this.labHour = labHour;
+    }
+
+    /**
+     * 获取
+     * @return credit
+     */
+    public double getCredit() {
+        return credit;
+    }
+
+    /**
+     * 设置
+     * @param credit
+     */
+    public void setCredit(double credit) {
+        this.credit = credit;
+    }
+
+    /**
+     * 获取
+     * @return book
+     */
+    public String getBook() {
+        return book;
+    }
+
+    /**
+     * 设置
+     * @param book
+     */
+    public void setBook(String book) {
+        this.book = book;
+    }
+
+    /**
+     * 获取
+     * @return courseIntro
+     */
+    public String getCourseIntro() {
+        return courseIntro;
+    }
+
+    /**
+     * 设置
+     * @param courseIntro
+     */
+    public void setCourseIntro(String courseIntro) {
+        this.courseIntro = courseIntro;
     }
 
     /**
@@ -107,6 +226,8 @@ public class Course {
     }
 
     public String toString() {
-        return "Course{courseName = " + courseName + ", courseId = " + courseId + ", openSemester = " + openSemester + ", classTime = " + classTime + ", firstWeek = " + firstWeek + "}";
+        return "Course{courseId = " + courseId + ", courseName = " + courseName + ", courseType = " + courseType + ", theoryHour = " + theoryHour + ", labHour = " + labHour + ", credit = " + credit + ", book = " + book + ", courseIntro = " + courseIntro + ", openSemester = " + openSemester + ", classTime = " + classTime + ", firstWeek = " + firstWeek + "}";
     }
+
+
 }
