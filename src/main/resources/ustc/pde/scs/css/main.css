@@ -1,0 +1,211 @@
+
+.mainPanel {
+    -fx-background-color: linear-gradient(to right, #775749, #282444);
+
+    /*-fx-background-image: url("../img/test.jpg");*/
+    /*-fx-background-size: cover;*/
+    /*-fx-background-repeat: no-repeat;*/
+    /*-fx-background-position: center;*/
+}
+
+
+.panel {
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+
+    -fx-background-color: #ccd4dc;
+}
+
+
+
+.confirmButton {
+    -fx-text-fill: #fff;
+    -fx-font-size: 18px;
+    -fx-text-alignment: center;
+    -fx-font-weight: bolder;
+
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+
+    -fx-background-color: linear-gradient(to right, #775749, #282444);
+}
+.confirmButton:hover {
+    -fx-font-size: 20px;
+
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, #36333a, 6, 0.5, 0, 2);
+}
+
+
+
+.sideButton {
+    -fx-text-fill: #fff;
+
+    -fx-border-radius: 25 0 0 25;
+    -fx-background-radius: 25 0 0 25;
+    -fx-background-position: 20 12;
+    -fx-background-size: 15px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-insets: 100%;
+
+    -fx-background-color: #775749;
+}
+.sideButton:hover {
+    -fx-font-size: 20px;
+    -fx-cursor: hand;
+
+    -fx-background-color: linear-gradient(to left, #775749, #282444);
+    -fx-effect: dropshadow(three-pass-box, #000000, 6, 0.5, 0, 2);
+}
+.sideButton:selected{
+    -fx-font-size: 20px;
+}
+#closeButton.sideButton {
+    -fx-text-fill: #fff;
+
+    -fx-border-radius: 25 0 0 25;
+    -fx-background-radius: 25 0 0 25;
+    -fx-background-position: 20 12;
+    -fx-background-size: 15px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-insets: 100%;
+    -fx-background-color: #CD5C5C;
+}
+
+
+
+
+.enterZone {
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+}
+.enterZone:hover {
+    -fx-color: #1a83e1;
+    -fx-effect: innershadow(three-pass-box, #fff600, 10, 0.2, 0, 0);
+}
+.enterZone:selected{
+    -fx-color: #1a83e1;
+}
+
+#passwordEnterZone:selected{
+    -fx-background-color: #FF0000;
+}
+
+
+
+
+
+.textLabel {
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-background-color: #ffffff;
+}
+
+
+
+
+
+
+.leftMainButton {
+    -fx-background-radius: 20 0 0 20;
+    -fx-border-radius: 20 0 0 20;
+    -fx-text-fill: #fff;
+    -fx-background-color: #708090;
+}
+.leftMainButton:hover {
+    -fx-background-color: #7B68EE;
+    -fx-effect: dropshadow(three-pass-box, #7B68EE, 20.0, 0.5, 0, 0);
+}
+
+.midMainButton {
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-text-fill: #fff;
+    -fx-background-color: #708090;
+}
+.midMainButton:hover {
+    -fx-background-color: #7B68EE;
+    -fx-effect: dropshadow(three-pass-box, #7B68EE, 20.0, 0.2, 0, 0);
+}
+
+.rightMainButton {
+    -fx-background-radius: 0 20 20 0;
+    -fx-border-radius: 0 20 20 0;
+    -fx-text-fill: #fff;
+    -fx-background-color: #708090;
+}
+.rightMainButton:hover{
+    -fx-background-color: #F08080;
+    -fx-effect:dropshadow(three-pass-box, #F08080,20.0,0.2,0,0);
+}
+
+
+
+
+
+
+#courseList{
+    -fx-background-color: #F5F5DC;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+
+
+
+
+.list-cell{
+    -fx-text-fill: #292e34;
+    -fx-background-color: #F5F5DC;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+.list-cell:hover{
+    -fx-text-fill: #fff;
+    -fx-background-color:#3CB371;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #3CB371,20.0,0.2,0,0);
+}
+
+
+
+
+#chooseList{
+    -fx-background-color: #708090;
+    -fx-mark-color: #CD5C5C;
+    -fx-text-fill: #fff;
+    -fx-background-radius: 20 0 0 0;
+    -fx-border-radius: 20 0 0 0;
+}
+#chooseList:hover{
+    -fx-background-color: #F08080;
+    -fx-mark-color: #708090;
+    -fx-text-fill: #fff;
+}
+#chooseList.context-menu {
+    -fx-min-width: 250px;
+    -fx-background-color: #FFFAFA;
+    -fx-background-radius: 0 0 20 20;
+    -fx-border-radius: 0 0 20 20;
+}
+#chooseList.menu-item:focused {
+    -fx-background-color: #3CB371;
+    -fx-text-fill: #fff;
+    -fx-effect: dropshadow(three-pass-box, #3CB371, 20.0, 0.1, 0, 0);
+}
+
+
+
+#choose{
+    -fx-background-color: #708090;
+    -fx-background-radius: 0 20 0 0;
+    -fx-border-radius: 0 20 0 0;
+}
+#choose:hover{
+    -fx-background-color: #7B68EE;
+    -fx-effect:dropshadow(three-pass-box, #7B68EE,20.0,0.1,0,0);
+    -fx-text-fill: #fff;
+}
+
+

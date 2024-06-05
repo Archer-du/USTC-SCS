@@ -1,113 +1,93 @@
 
-#mainPane{
-    -fx-background-image: url("../img/test.jpg");
-    -fx-background-size: cover;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center;
+#mainPane {
+    -fx-background-color: linear-gradient(to right, #775749, #282444);
+
+    /*-fx-background-image: url("../img/test.jpg");*/
+    /*-fx-background-size: cover;*/
+    /*-fx-background-repeat: no-repeat;*/
+    /*-fx-background-position: center;*/
 }
 
 
-.panel{
-    -fx-background-color: #FAFAD2;
+.panel {
     -fx-border-radius: 10;
     -fx-background-radius: 10;
+
+    -fx-background-color: #ccd4dc;
 }
 
 
 
-.confirmButton{
+.confirmButton {
+    -fx-text-fill: #fff;
     -fx-font-size: 18px;
+    -fx-text-alignment: center;
+    -fx-font-weight: bolder;
+
     -fx-background-radius: 25;
     -fx-border-radius: 25;
-    -fx-background-color: linear-gradient(to right, #00fffc, #fff600);
-    -fx-text-alignment: center;
-    -fx-text-fill: #fff;
-    -fx-font-weight: bolder;
+
+    -fx-background-color: linear-gradient(to right, #775749, #282444);
 }
-.confirmButton:hover{
+.confirmButton:hover {
     -fx-font-size: 20px;
+
     -fx-cursor: hand;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,1), 6, 0.5, 0, 2);
+    -fx-effect: dropshadow(three-pass-box, #36333a, 6, 0.5, 0, 2);
 }
 
 
 
-.sideButton{
+.sideButton {
     -fx-text-fill: #fff;
-    -fx-background-radius: 25 0 0 25;
+
     -fx-border-radius: 25 0 0 25;
-    -fx-background-color: #1a83e1;
+    -fx-background-radius: 25 0 0 25;
     -fx-background-position: 20 12;
     -fx-background-size: 15px;
     -fx-background-repeat: no-repeat;
     -fx-background-insets: 100%;
+
+    -fx-background-color: #775749;
 }
-.sideButton:hover{
-    -fx-background-color: #7B68EE;
+.sideButton:hover {
     -fx-font-size: 20px;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(three-pass-box, #FF4500, 15.0,0.1,0,0);
+
+    -fx-background-color: linear-gradient(to left, #775749, #282444);
+    -fx-effect: dropshadow(three-pass-box, #000000, 6, 0.5, 0, 2);
 }
 .sideButton:selected{
-    -fx-font-size: 16px;
+    -fx-font-size: 20px;
 }
-#closeButton.sideButton{
+#closeButton.sideButton {
     -fx-text-fill: #fff;
-    -fx-background-radius:25 0 0 25;
+
     -fx-border-radius: 25 0 0 25;
-    -fx-background-color: #CD5C5C;
+    -fx-background-radius: 25 0 0 25;
     -fx-background-position: 20 12;
     -fx-background-size: 15px;
     -fx-background-repeat: no-repeat;
     -fx-background-insets: 100%;
+    -fx-background-color: #CD5C5C;
 }
 
 
 
-#registerPanel{
-    -fx-background-color: #FAFAD2;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-}
 
-
-
-#sidEnterZone{
+.enterZone {
     -fx-background-radius: 25;
     -fx-border-radius: 25;
 }
-#sidEnterZone:hover{
+.enterZone:hover {
     -fx-color: #1a83e1;
     -fx-effect: innershadow(three-pass-box, #fff600, 10, 0.2, 0, 0);
 }
-#sidEnterZone:selected{
+.enterZone:selected{
     -fx-color: #1a83e1;
-}
-
-#passwordEnterZone{
-    -fx-background-radius: 25;
-    -fx-border-radius: 25;
-}
-
-#passwordEnterZone:hover{
-    -fx-color: #1a83e1;
-    -fx-effect: innershadow(three-pass-box, #00fffc, 10, 0.2, 0, 0);
 }
 
 #passwordEnterZone:selected{
     -fx-background-color: #FF0000;
 }
-#registerSure{
-    -fx-text-fill: #fff;
-    -fx-background-radius: 0 0 0 0;
-    -fx-border-radius: 0 0 0 0;
-    -fx-background-color: #1a83e1;
-}
-#registerSure:hover{
-    -fx-text-fill: #fff;
-    -fx-effect: dropshadow(three-pass-box, #1a83e1, 10, 0.5, 0, 0);
-}
 
-
-.label {
-}

@@ -13,7 +13,7 @@ public class SCSApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/startview.fxml"));
         Parent root = loader.load();
 
         primaryStage.setScene(new Scene(root, 1920, 1080));
