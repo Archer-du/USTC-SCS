@@ -30,6 +30,6 @@ public class CourseSelect extends Course{
     }
 
     public String toString() {
-        return "CourseSelect{maxNum = " + maxNum + "}";
+        return "CourseSelect{" + super.toString() + ", maxNum = " + maxNum + "}";
     }
 }

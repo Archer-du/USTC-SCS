@@ -1,33 +1,33 @@
 package ustc.pde.scs.entity.relation;
 
 public class Score {
-    String id;
+    String ID;
     String courseId;
     String grade;
 
     public Score() {
     }
 
-    public Score(String id, String courseId, String grade) {
-        this.id = id;
+    public Score(String ID, String courseId, String grade) {
+        this.ID = ID;
         this.courseId = courseId;
         this.grade = grade;
     }
 
     /**
      * 获取
-     * @return id
+     * @return ID
      */
-    public String getId() {
-        return id;
+    public String getID() {
+        return ID;
     }
 
     /**
      * 设置
-     * @param id
+     * @param ID
      */
-    public void setId(String id) {
-        this.id = id;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     /**
@@ -63,6 +63,6 @@ public class Score {
     }
 
     public String toString() {
-        return "Score{id = " + id + ", courseId = " + courseId + ", grade = " + grade + "}";
+        return "Score{ID = " + ID + ", courseId = " + courseId + ", grade = " + grade + "}";
     }
 }

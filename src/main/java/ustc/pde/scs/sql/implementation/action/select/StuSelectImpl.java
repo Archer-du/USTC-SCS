@@ -11,7 +11,7 @@ public class StuSelectImpl extends SelectImpl{
     public ArrayList<CourseSelect> getAll(String id) {  //获取所有已选课程
         String sql = "select course.courseId as courseId,courseName,courseType,theoryHour," +
                 "labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum " +
-                "from Course,selectCourse" +
+                "from Course,selectCourse " +
                 "where course.courseId = selectCourse.courseId and selectCourse.id = ?";
         return getInstance2(CourseSelect.class,sql,id);
     }

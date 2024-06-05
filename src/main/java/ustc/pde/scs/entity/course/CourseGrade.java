@@ -35,6 +35,8 @@ public class CourseGrade extends Course{
         this.gradeMeans = gradeMeans;
     }
 
-
+    public String toString() {
+        return "CourseGrade{" + super.toString() + ", gradeMeans = " + gradeMeans + "}";
+    }
 
 }

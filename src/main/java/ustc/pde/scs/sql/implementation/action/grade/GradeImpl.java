@@ -15,10 +15,10 @@ public class GradeImpl extends BaseDAO implements Grade {
     public boolean insert(Score score) {
         CourseSelectImpl courseSelect = new CourseSelectImpl();
         StudentDAOImpl studentDAO = new StudentDAOImpl();
-        if(courseSelect.isExist(score.getCourseId()) && studentDAO.isExist(score.getId())){
+        if(courseSelect.isExist(score.getCourseId()) && studentDAO.isExist(score.getID())){
             try{
                 String sql = "insert into selectGrade values(?,?,?)";
-                executeUpdate(sql,score.getId(),score.getCourseId(),score.getGrade());
+                executeUpdate(sql,score.getID(),score.getCourseId(),score.getGrade());
                 return true;
             }catch (SQLException e){
                 return false;
@@ -44,10 +44,10 @@ public class GradeImpl extends BaseDAO implements Grade {
     }
 
     @Override
-    public boolean update(Score score) throws SQLException {
+    public boolean update(Score score){
         try{
             String sql = "update selectGrade set grade = ? where id = ? and courseId = ?";
-            executeUpdate(sql,score.getGrade(),score.getId(),score.getCourseId());
+            executeUpdate(sql,score.getGrade(),score.getID(),score.getCourseId());
             return true;
         }catch (SQLException e){
             return false;

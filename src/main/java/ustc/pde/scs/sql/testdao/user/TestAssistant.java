@@ -17,7 +17,7 @@ public class TestAssistant {
         assistant.setMajor(new Major("123","计算机","sadjas"));
         assistant.setStudyDate("2023-11-05");
         assistant.setCurSemester("2024春季学期");
-        assistant.setID("PB21051110");
+        assistant.setID("PB2105");
         assistant.setPassword("hdasjk");
         assistant.setUsername("jdsalkd");
         assistant.setIdCard("dsa");

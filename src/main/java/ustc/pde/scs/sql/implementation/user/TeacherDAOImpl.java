@@ -53,7 +53,7 @@ public class TeacherDAOImpl extends UserDAOImpl{
 
     public ArrayList<Teacher> getAllTeacher() {
         String sql = "select username,password,idCard,teacher.id as ID,email, " +
-                "name,workDate from users,teacher" +
+                "name,workDate from users,teacher " +
                 "where teacher.id = users.id";
         return getInstance2(Teacher.class,sql);
     }

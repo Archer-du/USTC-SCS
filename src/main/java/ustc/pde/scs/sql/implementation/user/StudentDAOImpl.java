@@ -58,7 +58,7 @@ public class StudentDAOImpl extends UserDAOImpl {
 
     public ArrayList<Student> getAllStudent() {
         String sql = "select username,password,idCard,student.id as ID,email, " +
-                "name,studyDate,curSemester,stuType from users,student" +
+                "name,studyDate,curSemester,stuType from users,student " +
                 "where student.id = users.id";
         return getInstance2(Student.class,sql);
     }

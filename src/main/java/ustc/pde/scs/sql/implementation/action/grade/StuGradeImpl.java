@@ -25,7 +25,7 @@ public class StuGradeImpl extends GradeImpl{
     public ArrayList<CourseGrade> getAllGradeCourse(String id) {        //获取所有出成绩的课程信息
         String sql = "select course.courseId as courseId,courseName,courseType,theoryHour," +
                 "labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,gradeMeans " +
-                "from Course,selectGrade" +
+                "from Course,selectGrade " +
                 "where course.courseId = selectGrade.courseId and selectGrade.id = ?";
         return getInstance2(CourseGrade.class,sql,id);
     }

@@ -18,7 +18,7 @@ public class TestStudent extends TestUser{
         student.setName("侯甲申");
         student.setUsername("hjs");
         student.setPassword("hou13216");
-        student.setID("PB21051110");
+        student.setID("PB210");
         student.setIdCard("123123");
         student.setEmail("12313213");
         student.setMajor(new Major("123","计算机","sjdkal"));

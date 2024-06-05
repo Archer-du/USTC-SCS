@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class TestUser {
     public static void main(String[] args) throws SQLException {
-        User user = new User("hjs123","123456","PB21051110","2043539","41148120050126341X","拉我吧");
+        User user = new User("hjs123","123456","PB21051000","2043539","41148120050126341X","拉我吧");
         UserDAOImpl userDAO = new UserDAOImpl();
         if(userDAO.insert(user)){
             System.out.println(userDAO.getObject(user.getID()));

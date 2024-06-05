@@ -226,7 +226,7 @@ public class Course {
     }
 
     public String toString() {
-        return "Course{courseId = " + courseId + ", courseName = " + courseName + ", courseType = " + courseType + ", theoryHour = " + theoryHour + ", labHour = " + labHour + ", credit = " + credit + ", book = " + book + ", courseIntro = " + courseIntro + ", openSemester = " + openSemester + ", classTime = " + classTime + ", firstWeek = " + firstWeek + "}";
+        return "courseId = " + courseId + ", courseName = " + courseName + ", courseType = " + courseType + ", theoryHour = " + theoryHour + ", labHour = " + labHour + ", credit = " + credit + ", book = " + book + ", courseIntro = " + courseIntro + ", openSemester = " + openSemester + ", classTime = " + classTime + ", firstWeek = " + firstWeek ;
     }
 
 
