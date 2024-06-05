@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ustc.pde.scs.sql.DataBaseConnector;
 
 public class SCSApplication extends Application {
     public static Stage primaryStage;
@@ -20,12 +19,12 @@ public class SCSApplication extends Application {
         primaryStage.setTitle("USTC SCS");
 
         primaryStage.setResizable(false);
-
+        //primaryStage.setMaximized(true);
         primaryStage.show();
 
         // test sql connection
-        DataBaseConnector connector = new DataBaseConnector();
-        connector.getConnection();
+        //DataBaseConnector connector = new DataBaseConnector();
+        //connector.getConnection();
     }
 
     public static void main(String[] args) {
