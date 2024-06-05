@@ -6,14 +6,12 @@ import java.util.ArrayList;
 
 public class Teacher extends User{
     private String workDate;    //入职日期
-    private String teaName;     //老师姓名
-    private ArrayList<Course> TeachList;    //所教课程
+
     public Teacher() {
     }
 
-    public Teacher(String workDate, String teaName) {
+    public Teacher(String workDate) {
         this.workDate = workDate;
-        this.teaName = teaName;
     }
 
     /**
@@ -32,25 +30,10 @@ public class Teacher extends User{
         this.workDate = workDate;
     }
 
-    /**
-     * 获取
-     * @return teaName
-     */
-    public String getTeaName() {
-        return teaName;
-    }
-
-    /**
-     * 设置
-     * @param teaName
-     */
-    public void setTeaName(String teaName) {
-        this.teaName = teaName;
-    }
-
     public String toString() {
-        return "Teacher{workDate = " + workDate + ", teaName = " + teaName + "}";
+        return "Teacher{workDate = " + workDate + "}";
     }
+    //private ArrayList<Course> TeachList;    //所教课程
 
 
 

@@ -8,40 +8,41 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AssistantDAOImpl extends StudentDAOImpl{
-    public boolean insert(Assistant assistant) throws SQLException {
-        if(isExist(assistant.getID())){
-            return false;   //已存在
-        }
-        if(!super.isExist(assistant.getID())){
-            super.insert(assistant);      //父表中不存在，插入
+    public boolean insert(Assistant assistant) {
+
+        super.insert(assistant);      //父表中不存在，插入
+        try {
+            String sql = "insert into Assistant(id) values(?)";
+            executeUpdate(sql,assistant.getID());
+            return true;
+        }catch (SQLException e){
+            return false;
         }
 
-        String sql = "insert into Assistant values(?)";
-        executeUpdate(sql,assistant.getID());
-        return true;
     }
 
     @Override
-    public boolean delete(String id) throws SQLException {
-        if(!isExist(id)){
-            return false;   //没有这个id
+    public boolean delete(String id)  {
+        try {
+            String sql = "delete from Assistant where ID = ?";
+            executeUpdate(sql,id);
+            return true;
+        }catch (SQLException e){
+            return false;
         }
-        String sql = "delete from Assistant where ID = ?";
-        executeUpdate(sql,id);
-        return true;
     }
 
     @Override
     public Assistant getObject(String id) {
-        String sql = "select student.ID as ID,studyDate,curSemester,stuType,username,password,idCard,stuName,email" +
-                "from users,student,assistant where users.id = student.id and student.id = assistant.id" +
+        String sql = "select student.ID as ID,studyDate,curSemester,stuType,username,password,idCard,name,email" +
+                " from users,student,assistant where users.id = student.id and student.id = assistant.id " +
                 "and assistant.id = ? ";
-        return getInstance(Assistant.class,sql);
+        return getInstance(Assistant.class,sql,id);
     }
 
     public ArrayList<Assistant> getAllAssistant() {
         String sql = "select username,password,idCard,student.id as ID,email, " +
-                "stuName,studyDate,curSemester,stuType from users,student,assistant" +
+                "name,studyDate,curSemester,stuType from users,student,assistant " +
                 "where student.id = users.id and assistant.id = student.id";
         return getInstance2(Assistant.class,sql);
     }

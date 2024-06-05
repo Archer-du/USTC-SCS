@@ -10,7 +10,7 @@ import java.util.SequencedCollection;
 
 public class CourseDAOImpl extends BaseDAO implements CourseDAO {
     @Override
-    public boolean insert(Course course) throws SQLException {
+    public boolean insert(Course course) {
         try {
             String sql = "insert into Course(courseId,courseName,courseType,theoryHour," +
                     "labHour,credit,book,courseIntro,openSemester,classTime,firstWeek) " +
@@ -28,7 +28,7 @@ public class CourseDAOImpl extends BaseDAO implements CourseDAO {
     }
 
     @Override
-    public boolean delete(String CourseId) throws SQLException {
+    public boolean delete(String CourseId) {
         try{
             String sql = "delete from Course where courseId = ?";
             executeUpdate(sql,CourseId);
@@ -45,7 +45,7 @@ public class CourseDAOImpl extends BaseDAO implements CourseDAO {
     }
 
     @Override
-    public boolean update(Course course) throws SQLException {
+    public boolean update(Course course) {
         try {
             String sql = "update Course set courseName = ?,courseType = ?,theoryHour = ?, " +
                     "labHour = ?, credit = ?, book = ?, courseIntro = ?, " +
@@ -53,7 +53,8 @@ public class CourseDAOImpl extends BaseDAO implements CourseDAO {
             executeUpdate(sql,course.getCourseName(),course.getCourseType(),
                     course.getTheoryHour(),course.getLabHour(),course.getCredit(),
                     course.getBook(),course.getCourseIntro(),
-                    course.getOpenSemester(),course.getClassTime(),course.getFirstWeek());
+                    course.getOpenSemester(),course.getClassTime(),
+                    course.getFirstWeek(),course.getCourseId());
             return true;
         }catch (SQLException e){
             return false;

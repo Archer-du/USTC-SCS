@@ -6,21 +6,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CourseSelectImpl extends CourseDAOImpl{
-    boolean insert(CourseSelect courseSelect) throws SQLException {
-        if(super.insert(courseSelect)){
+    public boolean insert(CourseSelect courseSelect) {
+        super.insert(courseSelect);
+        try{
             String sql = "update Course set maxNum = ? where courseId = ?";
             executeUpdate(sql,courseSelect.getMaxNum(),courseSelect.getCourseId());
             return true;
+        }catch (SQLException e){
+            return false;
         }
-        return false;
     }
-    boolean update(CourseSelect courseSelect) throws SQLException {
-        if(super.update(courseSelect)){
+    public boolean update(CourseSelect courseSelect)  {
+        super.update(courseSelect);
+        try {
             String sql = "update Course set maxNum = ? where courseId = ?";
             executeUpdate(sql,courseSelect.getMaxNum(),courseSelect.getCourseId());
             return true;
+        }catch (SQLException e){
+            return false;
         }
-        return false;
+
     }
     @Override
     public CourseSelect getObject(String courseId) {

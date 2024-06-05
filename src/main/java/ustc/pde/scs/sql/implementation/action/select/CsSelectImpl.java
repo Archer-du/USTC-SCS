@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class CsSelectImpl extends SelectImpl{
     @Override
     public ArrayList<Student> getAll(String courseId) {  //获取选课学生信息
-        String sql = "select student.ID as ID,studyDate,curSemester,stuType,username,password,idCard,stuName,email" +
+        String sql = "select student.ID as ID,studyDate,curSemester,stuType,username,password,idCard,name,email" +
                 "from users,student,selectCourse where users.id = student.id and student.id = selectCourse.id" +
                 "and selectCourse.courseId = ?";
         return getInstance2(Student.class,sql,courseId);

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class CsTeachImpl extends TeachImpl{
     @Override
     public ArrayList<Teacher> getAll(String courseId) {  //获取所有授课老师信息
-        String sql = "select Teacher.ID as ID,workDate,username,password,idCard,TeaName,email" +
+        String sql = "select Teacher.ID as ID,workDate,username,password,idCard,name,email" +
                 "from users,teacher,Teach where users.id = teacher.id and teacher.id = teach.id" +
                 "and teach.courseId = ?";
         return getInstance2(Teacher.class,sql,courseId);

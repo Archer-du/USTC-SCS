@@ -11,8 +11,8 @@ public class TeacherDAOImpl extends UserDAOImpl{
     public boolean insert(Teacher teacher) {
         super.insert(teacher);
         try{
-            String sql = "insert into teacher(id,teaName,workDate) values(?,?,?)";
-            executeUpdate(sql,teacher.getID(),teacher.getTeaName(),teacher.getWorkDate());
+            String sql = "insert into teacher(id,workDate) values(?,?)";
+            executeUpdate(sql,teacher.getID(),teacher.getWorkDate());
             return true;
         }catch (SQLException e){
             return false;
@@ -21,7 +21,7 @@ public class TeacherDAOImpl extends UserDAOImpl{
     }
 
     @Override
-    public boolean delete(String id) throws SQLException {
+    public boolean delete(String id) {
         try{
             String sql = "delete from teacher where id = ?";
             executeUpdate(sql,id);
@@ -33,10 +33,10 @@ public class TeacherDAOImpl extends UserDAOImpl{
     }
 
 
-    public boolean update(Teacher teacher) throws SQLException {
+    public boolean update(Teacher teacher) {
         try{
-            String sql = "update teacher set teaName =?,workDate = ? where id = ?";
-            executeUpdate(sql,teacher.getTeaName(),teacher.getWorkDate(),teacher.getID());
+            String sql = "update teacher set workDate = ? where id = ?";
+            executeUpdate(sql,teacher.getWorkDate(),teacher.getID());
             return true;
         }catch (SQLException e){
             return false;
@@ -46,14 +46,14 @@ public class TeacherDAOImpl extends UserDAOImpl{
 
     @Override
     public Teacher getObject(String id) {
-        String sql = "select teacher.id as ID,teaName,workDate,username,password,idCard,email from " +
-                "users,teacher where teacher.id = users.id and teacher.id = ID";
+        String sql = "select teacher.id as ID,name,workDate,username,password,idCard,email from " +
+                "users,teacher where teacher.id = users.id and teacher.id = ?";
         return getInstance(Teacher.class,sql,id);
     }
 
     public ArrayList<Teacher> getAllTeacher() {
         String sql = "select username,password,idCard,teacher.id as ID,email, " +
-                "teaName,workDate from users,teacher" +
+                "name,workDate from users,teacher" +
                 "where teacher.id = users.id";
         return getInstance2(Teacher.class,sql);
     }

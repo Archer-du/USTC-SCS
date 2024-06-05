@@ -12,41 +12,47 @@ import java.util.ArrayList;
 
 public class GradeImpl extends BaseDAO implements Grade {
     @Override
-    public boolean insert(Score score) throws SQLException {
+    public boolean insert(Score score) {
         CourseSelectImpl courseSelect = new CourseSelectImpl();
         StudentDAOImpl studentDAO = new StudentDAOImpl();
         if(courseSelect.isExist(score.getCourseId()) && studentDAO.isExist(score.getId())){
-            if(isExist(score.getId()+" "+score.getCourseId())){
-                return false;   //已存在
+            try{
+                String sql = "insert into selectGrade values(?,?,?)";
+                executeUpdate(sql,score.getId(),score.getCourseId(),score.getGrade());
+                return true;
+            }catch (SQLException e){
+                return false;
             }
-            String sql = "insert into selectGrade values(?,?,?)";
-            executeUpdate(sql,score.getId(),score.getCourseId(),score.getGrade());
-            return true;
         }
         return false;
     }
 
     @Override
-    public boolean delete(String primaryKey) throws SQLException {
-        if(!isExist(primaryKey)){
-            return false;   //不存在
-        }
+    public boolean delete(String primaryKey) {
+
         String [] pk = primaryKey.split(" ");
         String id = pk[0];
         String courseId = pk[1];
-        String sql = "delete from selectGrade where id = ? and courseId = ?";
-        executeUpdate(sql,id,courseId);
-        return true;
+        try{
+            String sql = "delete from selectGrade where id = ? and courseId = ?";
+            executeUpdate(sql,id,courseId);
+            return true;
+        }catch (SQLException e){
+            return false;
+        }
+
     }
 
     @Override
     public boolean update(Score score) throws SQLException {
-        if(!isExist(score.getId()+ " " + score.getCourseId())){
+        try{
+            String sql = "update selectGrade set grade = ? where id = ? and courseId = ?";
+            executeUpdate(sql,score.getGrade(),score.getId(),score.getCourseId());
+            return true;
+        }catch (SQLException e){
             return false;
         }
-        String sql = "update selectGrade set grade = ? where id = ? and courseId = ?";
-        executeUpdate(sql,score.getGrade(),score.getId(),score.getCourseId());
-        return true;
+
     }
 
     @Override

@@ -7,11 +7,14 @@ import java.util.ArrayList;
 
 public class CsGradeImpl extends GradeImpl{
     @Override
-    public boolean delete(String courseId) throws SQLException {        //一键删除该课程所有成绩
-        if(!isExist(courseId)) return false;
-        String sql = "delete from selectGrade where courseId = ?";
-        executeUpdate(sql,courseId);
-        return true;
+    public boolean delete(String courseId) {        //一键删除该课程所有成绩
+        try{
+            String sql = "delete from selectGrade where courseId = ?";
+            executeUpdate(sql,courseId);
+            return true;
+        }catch (SQLException e){
+            return false;
+        }
     }
     public ArrayList<Score> getAll(String courseId){        //获取该课程所有学生的分数
         String sql = "select * from selectGrade where courseId = ?";

@@ -8,11 +8,15 @@ import java.util.ArrayList;
 
 public class StuGradeImpl extends GradeImpl{
     @Override
-    public boolean delete(String id) throws SQLException {  //一键删除该学生所有成绩信息
-        if(!isExist(id)) return false;
-        String sql = "delete from selectGrade where id = ?";
-        executeUpdate(sql,id);
-        return true;
+    public boolean delete(String id) {  //一键删除该学生所有成绩信息
+        try{
+            String sql = "delete from selectGrade where id = ?";
+            executeUpdate(sql,id);
+            return true;
+        }catch (SQLException e){
+            return false;
+        }
+
     }
     public ArrayList<Score> getAll(String id){      //获取所有课程成绩
         String sql = "select * from selectGrade where id = ?";

@@ -12,8 +12,8 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
     @Override
     public boolean insert(User user) {
         try{
-            String sql = "insert into users values(?,?,?,?,?)";
-            executeUpdate(sql,user.getUsername(),user.getPassword(),user.getIdCard(),user.getID(),user.getEmail());
+            String sql = "insert into users values(?,?,?,?,?,?)";
+            executeUpdate(sql,user.getUsername(),user.getPassword(),user.getIdCard(),user.getID(),user.getEmail(),user.getName());
             return true;
         }catch (SQLException e){
             return false;
@@ -22,7 +22,7 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
     }
 
     @Override
-    public boolean delete(String id) throws SQLException {
+    public boolean delete(String id) {
         try{
             String sql = "delete from users where id = ?";
             executeUpdate(sql,id);
@@ -34,10 +34,10 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
     }
 
     @Override
-    public boolean update(User user) throws SQLException {
+    public boolean update(User user) {
         try{
-            String sql = "update users set username = ?,password =?,idCard = ?,email = ? where id =?";
-            executeUpdate(sql,user.getUsername(),user.getPassword(),user.getIdCard(),user.getEmail(),user.getID());
+            String sql = "update users set username = ?,password =?,idCard = ?,email = ?, name = ? where id =?";
+            executeUpdate(sql,user.getUsername(),user.getPassword(),user.getIdCard(),user.getEmail(),user.getName(),user.getID());
             return true;
         }catch (Exception e){
             return false;
