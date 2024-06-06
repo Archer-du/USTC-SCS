@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class AssAssistImpl extends AssistImpl{
     @Override
     public ArrayList<Course> getAll(String id) {      //获取助教所有的授课信息
-        String sql = "select courseId,courseName,courseType,theoryHour," +
+        String sql = "select assist.courseId as courseId,courseName,courseType,theoryHour," +
                 "labHour,credit,book,courseIntro,openSemester,classTime,firstWeek from Course,assist " +
                 "where assist.courseId = course.courseId and assist.id = ?";
         return getInstance2(Course.class,sql,id);
