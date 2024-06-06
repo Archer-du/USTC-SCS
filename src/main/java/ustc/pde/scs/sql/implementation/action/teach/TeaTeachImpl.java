@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class TeaTeachImpl extends TeachImpl{
     @Override
     public ArrayList<Course> getAll(String id){
-        String sql = "select courseId,courseName,courseType,theoryHour," +
+        String sql = "select teach.courseId as courseId,courseName,courseType,theoryHour," +
                 "labHour,credit,book,courseIntro,openSemester,classTime,firstWeek from Course,teach " +
                 "where teach.courseId = course.courseId and teach.id = ?";
         return getInstance2(Course.class,sql,id);
