@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import ustc.pde.scs.sql.implementation.user.UserDAOImpl;
 
 public class ListViewController {
     @FXML
@@ -32,11 +33,12 @@ public class ListViewController {
     public Button showMyCourseButton;
     @FXML
     public Button ChooseCourseButton;
-    @FXML
-    public Button el;
 
 
-    public void initialize() {
+    public void initialize(String userID) {
+        UserDAOImpl userDAO = new UserDAOImpl();
+        var user = userDAO.getObject(userID);
+
     }
 
     public void OnCourseChosen(ActionEvent actionEvent) {

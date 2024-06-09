@@ -83,7 +83,7 @@ public class StartViewController {
                 stage.setScene(new Scene(root, 1920, 1080));
                 stage.show();
                 ListViewController controller = loader.getController();
-                controller.initialize();
+                controller.initialize(rawID);
             }
         }
         else {
@@ -178,15 +178,11 @@ public class StartViewController {
 
 
     public void checkGenderFemale(ActionEvent actionEvent) {
-        if(female.isSelected()) {
-            male.setSelected(false);
-        }
+        male.setSelected(!female.isSelected());
     }
 
     public void checkGenderMale(ActionEvent actionEvent) {
-        if(male.isSelected()) {
-            female.setSelected(false);
-        }
+        female.setSelected(!male.isSelected());
     }
 
 
