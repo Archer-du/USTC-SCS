@@ -14,6 +14,10 @@ insert into users(id,username,password,name,idcard,email)
 	values("TA002","lwbyyds","666666","刘老师","1231321312","lwb6666@mail.ustc.com");
 insert into users(id,username,password,name,idcard,email) 
 	values("TA003","lsy520","ls5201314","刘神","123456789","ls@mail.ustc.com");
+
+insert into users(id,username,password,name,idcard,email)
+    values("root","","root","root","","");
+
 -- major insert
 insert into major(majorId,majorName,majorIntro) values("000","少年班学院","苕皮");
 insert into major(majorId,majorName,majorIntro) values("001","数学科学学院","书院大佬");
@@ -51,6 +55,8 @@ insert into assistant values("PB21051110");
 insert into teacher values("TA001","2001-03-04");
 insert into teacher values("TA002","1996-07-08");
 insert into teacher values("TA003","2016-11-25");
+
+insert into administrator values ("root");
 
 -- course insert
 insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum,gradeMeans) 

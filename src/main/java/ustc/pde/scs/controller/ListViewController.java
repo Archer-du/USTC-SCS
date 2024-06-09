@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
-public class MainController {
+public class ListViewController {
     @FXML
     public ImageView image;
     @FXML
@@ -36,6 +36,9 @@ public class MainController {
     public Button el;
 
 
+    public void initialize() {
+    }
+
     public void OnCourseChosen(ActionEvent actionEvent) {
     }
 
@@ -47,6 +50,7 @@ public class MainController {
 
     public void OnShowCoursesListCommand(ActionEvent actionEvent) {
     }
+
 
 }
 

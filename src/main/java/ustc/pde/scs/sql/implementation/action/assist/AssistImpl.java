@@ -3,7 +3,6 @@ package ustc.pde.scs.sql.implementation.action.assist;
 import ustc.pde.scs.sql.base.BaseDAO;
 import ustc.pde.scs.sql.implementation.course.CourseDAOImpl;
 import ustc.pde.scs.sql.implementation.user.AssistantDAOImpl;
-import ustc.pde.scs.sql.implementation.user.TeacherDAOImpl;
 import ustc.pde.scs.sql.inter.action.Assist;
 
 import java.sql.SQLException;

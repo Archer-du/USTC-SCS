@@ -6,7 +6,6 @@ import ustc.pde.scs.entity.course.Course;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.SequencedCollection;
 
 public class CourseDAOImpl extends BaseDAO implements CourseDAO {
     @Override

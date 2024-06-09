@@ -1,13 +1,3 @@
-/*==============================================================*/
-/* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2024/5/23 21:42:37                           */
-/*==============================================================*/
-
-
-
-drop database if exists scs;
-create database scs;
-use scs;
 drop table if exists Assist;
 
 drop table if exists Assistant;
@@ -121,7 +111,7 @@ create table Teacher
 /*==============================================================*/
 create table Users
 (
-    username             varchar(20) not null,
+    username             varchar(20),
     password             varchar(20) not null,
     idCard               varchar(18),
     ID                   varchar(12) not null,

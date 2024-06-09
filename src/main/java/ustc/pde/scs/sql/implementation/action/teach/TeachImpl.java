@@ -2,8 +2,6 @@ package ustc.pde.scs.sql.implementation.action.teach;
 
 import ustc.pde.scs.sql.base.BaseDAO;
 import ustc.pde.scs.sql.implementation.course.CourseDAOImpl;
-import ustc.pde.scs.sql.implementation.course.CourseSelectImpl;
-import ustc.pde.scs.sql.implementation.user.StudentDAOImpl;
 import ustc.pde.scs.sql.implementation.user.TeacherDAOImpl;
 import ustc.pde.scs.sql.inter.action.Teach;
 

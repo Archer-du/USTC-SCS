@@ -87,7 +87,7 @@
     -fx-color: #1a83e1;
 }
 
-#passwordEnterZone:selected{
+#loginPassword:selected{
     -fx-background-color: #FF0000;
 }
 

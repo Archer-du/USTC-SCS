@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ustc.pde.scs.controller.LoginController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ustc.pde.scs.controller.StartViewController">
    <children>
        <BorderPane prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -30,14 +30,14 @@
                             </Label>
                      </children>
                   </AnchorPane>
-                      <AnchorPane layoutX="722.0" layoutY="168.0" prefHeight="780.0" prefWidth="510.0" styleClass="panel" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="160.0">
+                      <AnchorPane fx:id="loginPanel" layoutX="722.0" layoutY="168.0" prefHeight="780.0" prefWidth="510.0" styleClass="panel" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="160.0">
                          <children>
                              <Label alignment="CENTER" blendMode="DARKEN" cache="true" mnemonicParsing="true" opacity="0.69" prefHeight="178.0" prefWidth="510.0" text="login" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                      <Font name="Consolas Bold" size="72.0" />
                                  </font>
                              </Label>
-                             <Button alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="541.0" mnemonicParsing="false" onAction="#OnLoginConfirm" prefHeight="50.0" prefWidth="240.0" styleClass="confirmButton" text="confirm" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="140.0">
+                             <Button fx:id="confirmButton" alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="541.0" mnemonicParsing="false" onAction="#onLoginConfirm" prefHeight="50.0" prefWidth="240.0" styleClass="confirmButton" text="confirm" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="140.0">
                            <font>
                               <Font size="16.0" />
                            </font></Button>
@@ -52,8 +52,8 @@
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                                   <TextField fx:id="sidEnterZone" alignment="CENTER" layoutX="44.0" layoutY="282.0" prefHeight="50.0" prefWidth="420.0" styleClass="enterZone" text="" GridPane.rowIndex="1" />
-                                   <PasswordField fx:id="passwordEnterZone" alignment="CENTER" layoutX="49.0" layoutY="420.0" prefHeight="50.0" prefWidth="420.0" styleClass="enterZone" text="" GridPane.rowIndex="3" />
+                                   <TextField fx:id="loginID" alignment="CENTER" layoutX="44.0" layoutY="282.0" prefHeight="50.0" prefWidth="420.0" styleClass="enterZone" text="" GridPane.rowIndex="1" />
+                                   <PasswordField fx:id="loginPassword" alignment="CENTER" layoutX="49.0" layoutY="420.0" prefHeight="50.0" prefWidth="420.0" styleClass="enterZone" text="" GridPane.rowIndex="3" />
                                    <Label layoutX="49.0" layoutY="236.0" prefHeight="24.0" prefWidth="415.0" text="username：">
                                        <font>
                                            <Font size="20.0" />
@@ -98,7 +98,7 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                          <TextField fx:id="registerSid" prefHeight="30.0" prefWidth="300.0" styleClass="enterZone" AnchorPane.rightAnchor="0.0" />
+                                          <TextField fx:id="registerID" prefHeight="30.0" prefWidth="300.0" styleClass="enterZone" AnchorPane.rightAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="30.0" prefWidth="427.0" GridPane.rowIndex="1">
@@ -110,8 +110,8 @@
                                     </Label>
                                     <AnchorPane layoutY="45.0" prefHeight="30.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" GridPane.rowIndex="1">
                                        <children>
-                                                <CheckBox id="sex" fx:id="female" layoutX="109.0" mnemonicParsing="false" text="女" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0" />
-                                                <CheckBox id="sex" fx:id="male" mnemonicParsing="false" selected="true" text="男" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="5.0" />
+                                                <CheckBox id="sex" fx:id="female" onAction="#checkGenderFemale" layoutX="109.0" mnemonicParsing="false" text="女" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0" />
+                                                <CheckBox id="sex" fx:id="male" onAction="#checkGenderMale" mnemonicParsing="false" selected="true" text="男" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="5.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -179,7 +179,7 @@
                                       <Separator layoutX="142.0" layoutY="1.0" prefHeight="24.0" prefWidth="378.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
                                   </children>
                               </AnchorPane>
-                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="541.0" mnemonicParsing="false" onAction="#OnLoginConfirm" prefHeight="50.0" prefWidth="240.0" styleClass="confirmButton" text="confirm" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="140.0">
+                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="541.0" mnemonicParsing="false" onAction="#onRegisterConfirm" prefHeight="50.0" prefWidth="240.0" styleClass="confirmButton" text="confirm" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="140.0">
                                   <font>
                                       <Font size="16.0" />
                                   </font></Button>
@@ -196,12 +196,12 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                            <Button layoutX="1760.0" layoutY="440.0" mnemonicParsing="false" onAction="#OnSwitchToLogin" prefHeight="50.0" prefWidth="160.0" styleClass="sideButton" text="login" AnchorPane.rightAnchor="0.0">
+                            <Button layoutX="1760.0" layoutY="440.0" mnemonicParsing="false" onAction="#onSwitchToLogin" prefHeight="50.0" prefWidth="160.0" styleClass="sideButton" text="login" AnchorPane.rightAnchor="0.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
-                            <Button mnemonicParsing="false" onAction="#OnSwitchToRegister" prefHeight="50.0" prefWidth="160.0" styleClass="sideButton" text="register" GridPane.rowIndex="1">
+                            <Button mnemonicParsing="false" onAction="#onSwitchToRegister" prefHeight="50.0" prefWidth="160.0" styleClass="sideButton" text="register" GridPane.rowIndex="1">
                            <font>
                               <Font size="18.0" />
                            </font>

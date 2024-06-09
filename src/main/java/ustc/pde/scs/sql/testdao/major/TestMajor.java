@@ -2,7 +2,6 @@ package ustc.pde.scs.sql.testdao.major;
 
 import ustc.pde.scs.entity.major.Major;
 import ustc.pde.scs.sql.implementation.major.MajorDAOImpl;
-import ustc.pde.scs.sql.inter.major.MajorDAO;
 
 import java.util.ArrayList;
 

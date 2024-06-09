@@ -15,7 +15,7 @@ public abstract class BaseDAO {
     //数据库用户名
     private static String user = "root";
     //数据库密码
-    private static String password = "houge.0404";
+    private static String password = "dpcljl20030723";
 
     //数据库连接
     protected Connection conn = null;
