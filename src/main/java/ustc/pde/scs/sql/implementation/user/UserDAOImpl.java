@@ -12,8 +12,8 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
     @Override
     public boolean insert(User user) {
         try{
-            String sql = "insert into users values(?,?,?,?,?,?)";
-            executeUpdate(sql,user.getUsername(),user.getPassword(),user.getIdCard(),user.getID(),user.getEmail(),user.getName());
+            String sql = "insert into users values(?,?,?,?,?,?,?,?,?)";
+            executeUpdate(sql,user.getUsername(),user.getPassword(),user.getIdCard(),user.getID(),user.getEmail(),user.getName(), null, user.getType(), user.getMajorId());
             return true;
         }catch (SQLException e){
             return false;

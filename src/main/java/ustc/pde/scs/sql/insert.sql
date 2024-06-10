@@ -1,24 +1,6 @@
 use scs;
--- users insert
-insert into users(id,username,password,name,idcard,email) 
-	values("PB21051110","2043529287","houge.0404","侯甲申","4114814564123465","hjs123456@mail.ustc.com");
-insert into users(id,username,password,name,idcard,email) 
-	values("PB21051098","123456777","123456","某原生生物","41148148823465","yssw@mail.ustc.com");
-insert into users(id,username,password,name,idcard,email) 
-	values("PB21111234","PB21111234","mima","电子人","xxxxxxxxxxx","dzr@mail.ustc.com");
-insert into users(id,username,password,name,idcard,email) 
-	values("PB21111111","PB21111111","11111111","学号里有很多1","11111111111","111@mail.ustc.com");
-insert into users(id,username,password,name,idcard,email) 
-	values("TA001","woshilaoshi","teacher","邵老师","4123284567812","sx@mail.ustc.com");
-insert into users(id,username,password,name,idcard,email) 
-	values("TA002","lwbyyds","666666","刘老师","1231321312","lwb6666@mail.ustc.com");
-insert into users(id,username,password,name,idcard,email) 
-	values("TA003","lsy520","ls5201314","刘神","123456789","ls@mail.ustc.com");
 
-insert into users(id,username,password,name,idcard,email)
-    values("root","","root","root","","");
-
--- major insert
+/*major insert*/
 insert into major(majorId,majorName,majorIntro) values("000","少年班学院","苕皮");
 insert into major(majorId,majorName,majorIntro) values("001","数学科学学院","书院大佬");
 insert into major(majorId,majorName,majorIntro) values("203","物理学院","头发茂密");
@@ -38,48 +20,43 @@ insert into major(majorId,majorName,majorIntro) values("229","人工智能与数
 insert into major(majorId,majorName,majorIntro) values("913","临床医学院","科大学医，真牛逼");
 insert into major(majorId,majorName,majorIntro) values("999","未来技术学院","穿越银河！");
 
--- student insert
-insert into student(id,majorid,studydate,cursemester,stutype) 
-	values("PB21051110","215","2021-09","2024春季学期","大三本科");
-insert into student(id,majorid,studydate,cursemester,stutype) 
-	values("PB21051098","215","2021-09","2024春季学期","大三本科");
-insert into student(id,majorid,studydate,cursemester,stutype) 
-	values("PB21111234","215","2021-09","2024春季学期","大三本科");
-insert into student(id,majorid,studydate,cursemester,stutype) 
-	values("PB21111111","215","2021-09","2024春季学期","大三本科");
+/*course insert*/
+insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,maxNum,gradeMeans,selectednum, teacherId)
+values("CS1001A","计算机程序设计A","必修",80,40,4.0,"","",120,"百分制",119, "TA001");
+insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,maxNum,gradeMeans,selectednum, teacherId)
+values("CS1002A","计算系统概论A","选修",80,40,4.0,"","",120,"百分制",120, "TA002");
+insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,maxNum,gradeMeans,selectednum, teacherId)
+values("MATH1006","数学分析B1","必修",120,0,6.0,"","",120,"百分制",3, "TA003");
+insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,maxNum,gradeMeans,selectednum, teacherId)
+values("MATH1007","数学分析B2","必修",120,0,6.0,"","",120,"百分制",10, "TA001");
+insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,maxNum,gradeMeans,selectednum, teacherId)
+values("MATH1009","线性代数B1","必修",80,0,4.0,"","",120,"百分制",20, "TA002");
+insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,maxNum,gradeMeans,selectednum, teacherId)
+values("PHYS1001B","力学B","必修",60,0,2.5,"","",120,"百分制",0, "TA003");
+insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,maxNum,gradeMeans,selectednum, teacherId)
+values("PHYS1002B","热血B","必修",40,0,1.5,"","",120,"百分制",12, "TA001");
+insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,maxNum,gradeMeans,selectednum, teacherId)
+values("PHYS1004C","电磁学C","必修",100,0,3.0,"","",120,"百分制",8, "TA002");
+insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,maxNum,gradeMeans,selectednum, teacherId)
+values("011103","袋鼠结构","必修",60,0,3.0,"","",120,"百分制",40, "TA003");
+insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,maxNum,gradeMeans,selectednum, teacherId)
+values("011040","屠论","必修",60,0,3.0,"","",120,"百分制",50, "TA001");
+insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,maxNum,gradeMeans,selectednum, teacherId)
+values("011127","数据结构","必修",60,40,4.0,"","",120,"百分制",90, "TA002");
 
--- assistant insert
-insert into assistant values("PB21051110");
 
--- teacher insert
-insert into teacher values("TA001","2001-03-04");
-insert into teacher values("TA002","1996-07-08");
-insert into teacher values("TA003","2016-11-25");
-
-insert into administrator values ("root");
-
--- course insert
-insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum,gradeMeans) 
-	values("CS1001A","计算机程序设计A","必修",80,40,4.0,"","","1秋","二四第三四节课",2,120,"百分制");
-insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum,gradeMeans) 
-	values("CS1002A","计算系统概论A","选修",80,40,4.0,"","","2秋","一三五第三四节课",2,120,"百分制");
-insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum,gradeMeans) 
-	values("MATH1006","数学分析B1","必修",120,0,6.0,"","","1秋","一三五第三四节课",1,120,"百分制");
-insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum,gradeMeans) 
-	values("MATH1007","数学分析B2","必修",120,0,6.0,"","","1春","一三五第三四节课",1,120,"百分制");
-insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum,gradeMeans) 
-	values("MATH1009","线性代数B1","必修",80,0,4.0,"","","1秋、1春","二四第三四节课",2,120,"百分制");
-insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum,gradeMeans) 
-	values("PHYS1001B","力学B","必修",60,0,2.5,"","","1春","二四第三四节课",2,120,"百分制");
-insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum,gradeMeans) 
-	values("PHYS1002B","热血B","必修",40,0,1.5,"","","1春","二四第三四节课",10,120,"百分制");
-insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum,gradeMeans) 
-	values("PHYS1004C","电磁学C","必修",100,0,3.0,"","","2秋","二四第三四节课",2,120,"百分制");
-insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum,gradeMeans) 
-	values("011103","袋鼠结构","必修",60,0,3.0,"","","1春","一三五第六七节课",1,120,"百分制");
-insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum,gradeMeans) 
-	values("011040","屠论","必修",60,0,3.0,"","","2秋","二四第三四节课",1,120,"百分制");
-insert into course(courseId,courseName,courseType,theoryHour,labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum,gradeMeans) 
-	values("011127","数据结构","必修",60,40,4.0,"","","2秋","一三五第三四节课",1,120,"百分制");
-
-    
+/*user insert*/
+insert into users(id,username,password,name,idcard,email,type,majorId,date)
+values("PB21051110","2043529287","houge.0404","侯甲申","4114814564123465","hjs123456@mail.ustc.com","administrator","215","2021-09");
+insert into users(id,username,password,name,idcard,email,type,majorId,date)
+values("PB21051098","123456777","123456","某原生生物","41148148823465","yssw@mail.ustc.com","student","215","2021-09");
+insert into users(id,username,password,name,idcard,email,type,majorId,date)
+values("PB21111234","PB21111234","mima","电子人","xxxxxxxxxxx","dzr@mail.ustc.com","student","215","2021-09");
+insert into users(id,username,password,name,idcard,email,type,majorId,date)
+values("PB21111111","PB21111111","11111111","学号里有很多1","11111111111","111@mail.ustc.com","student","215","2021-09");
+insert into users(id,username,password,name,idcard,email,type,date,majorId)
+values("TA001","woshilaoshi","teacher","邵老师","4123284567812","sx@mail.ustc.com","teacher","2001-03-04","215");
+insert into users(id,username,password,name,idcard,email,type,date,majorId)
+values("TA002","lwbyyds","666666","刘老师","1231321312","lwb6666@mail.ustc.com","teacher","2001-03-04","215");
+insert into users(id,username,password,name,idcard,email,type,date,majorId)
+values("TA003","lsy520","ls5201314","刘神","123456789","ls@mail.ustc.com","teacher","2016-11-25","215");

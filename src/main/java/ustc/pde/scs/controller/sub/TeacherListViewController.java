@@ -60,7 +60,9 @@ public class TeacherListViewController implements IListViewController {
                         rs.getString("courseType"),
                         rs.getInt("theoryHour"),
                         rs.getInt("labHour"),
-                        rs.getDouble("credit")
+                        rs.getDouble("credit"),
+                        rs.getInt("selectedNum"),
+                        rs.getInt("maxNum")
                 ));
             }
             return courses;
@@ -89,7 +91,9 @@ public class TeacherListViewController implements IListViewController {
                         rs.getString("courseType"),
                         rs.getInt("theoryHour"),
                         rs.getInt("labHour"),
-                        rs.getDouble("credit")
+                        rs.getDouble("credit"),
+                        rs.getInt("selectedNum"),
+                        rs.getInt("maxNum")
                 ));
             }
             return courses;

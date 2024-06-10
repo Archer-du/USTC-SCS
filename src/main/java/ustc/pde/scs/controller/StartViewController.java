@@ -2,6 +2,8 @@ package ustc.pde.scs.controller;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.PathTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +21,10 @@ import ustc.pde.scs.sql.implementation.major.MajorDAOImpl;
 import ustc.pde.scs.sql.implementation.user.UserDAOImpl;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Optional;
 
 public class StartViewController {
@@ -31,13 +37,8 @@ public class StartViewController {
     public PasswordField loginPassword;
     public TextField registerID;
     public TextField registerName;
-    public TextField registerMajor;
-    public CheckBox male;
-    public CheckBox female;
     public PasswordField registerPassword;
     public PasswordField confirmedPassword;
-
-
 
 
     public Button confirmButton;
@@ -45,14 +46,55 @@ public class StartViewController {
 
     public Label forgetPassword;
     public Button closeButton;
+    public ChoiceBox<String> IDPrefixBox;
+    public ChoiceBox<String> majorsBox;
+    public HashMap<String, String> majorMap;
 
-    public void initialize(){
+    public void initialize() {
+        majorMap = new HashMap<>();
+        prepareIDPrefixData();
+        prepareMajorData();
+
         cleanLoginPanel();
         cleanRegisterPanel();
-        //TODO:
-        loginID.setText("PB21050988");
-        loginPassword.setText("dpcljl20030723");
+
+        loginPanel.setVisible(true);
+        registerPanel.setVisible(false);
     }
+
+
+
+    private void prepareIDPrefixData(){
+        ObservableList<String> list = FXCollections.observableArrayList("PB", "TA");
+        IDPrefixBox.setItems(list);
+    }
+    private void prepareMajorData(){
+        ArrayList<String> majorNames = new ArrayList<>();
+        try {
+            MajorDAOImpl majorDAO = new MajorDAOImpl();
+            ResultSet rs = null;
+            try {
+                rs = majorDAO.executeQuerySQL("select * from Major");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            while (rs.next()) {
+                var id = rs.getString("majorId");
+                var name = rs.getString("majorName");
+                majorNames.add(name);
+                majorMap.put(name, id);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ObservableList<String> list = FXCollections.observableArrayList(majorNames);
+        majorsBox.setItems(list);
+    }
+
+
+
+
+
 
     public void onLoginConfirm(ActionEvent actionEvent) throws IOException {
         String rawID = loginID.getText();
@@ -64,9 +106,11 @@ public class StartViewController {
             return;
         }
         UserDAOImpl userDAO = new UserDAOImpl();
+        //TODO: 这个方法有bug，用反射机制做也不合理，建议重写
         var user = userDAO.getObject(rawID);
         if (user == null) {
-            var result = controlAlert(STR."账号[\{rawID}]不存在！\n是否注册？", "登录失败", Alert.AlertType.ERROR);
+            var result = controlAlert(STR."账号[\{rawID}]不存在！" +
+                    "\n是否注册？", "登录失败", Alert.AlertType.ERROR);
             if (result.get() == ButtonType.OK) {
                 cleanRegisterPanel();
                 registerID.setText(rawID);
@@ -76,13 +120,14 @@ public class StartViewController {
         }
         if (user.getPassword().equals(rawPassword)) {
             var identity = parseIdentity(rawID);
-            var result = controlAlert("欢迎！" + rawID + "\n" + "你的身份是：" + identity.toString(), "登录成功", Alert.AlertType.INFORMATION);
+            var result = controlAlert("欢迎！" + rawID +
+                    "\n你的身份是：" + identity.toString(), "登录成功", Alert.AlertType.INFORMATION);
             if (result.get() == ButtonType.OK) {
                 String path = null;
                 switch (identity){
-                    case Student -> path = "/ustc/pde/scs/fxml/studentListview.fxml";
-                    case Teacher -> path = "/ustc/pde/scs/fxml/teacherListview.fxml";
-                    case Administrator -> path = "/ustc/pde/scs/fxml/adminListview.fxml";
+                    case student -> path = "/ustc/pde/scs/fxml/studentListview.fxml";
+                    case teacher -> path = "/ustc/pde/scs/fxml/teacherListview.fxml";
+                    case administrator -> path = "/ustc/pde/scs/fxml/adminListview.fxml";
                 }
                 assert path != null;
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
@@ -104,10 +149,14 @@ public class StartViewController {
     }
 
     public void onRegisterConfirm(ActionEvent actionEvent) {
-        String rawID = registerID.getText();
+        String rawID = IDPrefixBox.getValue() + registerID.getText();
         String rawName = registerName.getText();
-        String rawMajor = registerMajor.getText();
+        String rawMajor = majorsBox.getValue();
         String rawPassword = registerPassword.getText();
+        if(IDPrefixBox.getValue() == null){
+            controlAlert(STR."账号[\{rawID}]格式不合法（未选择前缀）", "输入错误", Alert.AlertType.ERROR);
+            return;
+        }
         if(!checkIDFormat(rawID)) {
             controlAlert(STR."账号[\{rawID}]格式不合法", "输入错误", Alert.AlertType.ERROR);
             registerID.setText("");
@@ -118,11 +167,8 @@ public class StartViewController {
             registerName.setText("");
             return;
         }
-        MajorDAOImpl majorDAO = new MajorDAOImpl();
-        //TODO
-        if(false){
-            controlAlert(STR."专业[\{rawMajor}]不存在", "输入错误", Alert.AlertType.ERROR);
-            registerMajor.setText("");
+        if(rawMajor == null){
+            controlAlert(STR."院系[\{rawName}]不能为空", "输入错误", Alert.AlertType.ERROR);
             return;
         }
         if(!rawPassword.equals(confirmedPassword.getText())){
@@ -134,7 +180,9 @@ public class StartViewController {
         User user = new User();
         user.setID(rawID);
         user.setName(rawName);
+        user.setMajorId(majorMap.get(rawMajor));
         user.setPassword(rawPassword);
+        user.setType(parseIdentity(rawID).toString());
         UserDAOImpl userDAO = new UserDAOImpl();
         try {
             boolean succeed = userDAO.insert(user);
@@ -155,6 +203,7 @@ public class StartViewController {
 
 
     public void OnForgetPassword(MouseEvent mouseEvent) {
+        controlAlert("没做", "提示", Alert.AlertType.INFORMATION);
     }
 
 
@@ -183,24 +232,10 @@ public class StartViewController {
         }
     }
     public void OnSwitchToAbout(ActionEvent actionEvent) {
+        controlAlert("没做", "提示", Alert.AlertType.INFORMATION);
     }
-
-
-
-
-    public void checkGenderFemale(ActionEvent actionEvent) {
-        male.setSelected(!female.isSelected());
-    }
-
-    public void checkGenderMale(ActionEvent actionEvent) {
-        female.setSelected(!male.isSelected());
-    }
-
-
-
-
-
-    public void OnClose(ActionEvent actionEvent) {
+    public void OnClose(ActionEvent actionEvent){
+        SCSApplication.primaryStage.close();
     }
 
 
@@ -214,11 +249,8 @@ public class StartViewController {
     private void cleanRegisterPanel(){
         registerID.setText("");
         registerName.setText("");
-        registerMajor.setText("");
         registerPassword.setText("");
         confirmedPassword.setText("");
-        male.setSelected(true);
-        female.setSelected(false);
     }
 
 
@@ -236,9 +268,9 @@ public class StartViewController {
         if(!checkIDFormat(qualifiedID)){
             throw new RuntimeException();
         }
-        if(qualifiedID.matches("PB\\d{8}")) return Identity.Student;
-        if(qualifiedID.matches("TA\\d{3}")) return Identity.Teacher;
-        if(qualifiedID.equals("root")) return Identity.Administrator;
+        if(qualifiedID.matches("PB\\d{8}")) return Identity.student;
+        if(qualifiedID.matches("TA\\d{3}")) return Identity.teacher;
+        if(qualifiedID.equals("root")) return Identity.administrator;
         return null;
     }
 
@@ -250,6 +282,12 @@ public class StartViewController {
         alert.setContentText(text);
         return alert.showAndWait();
     }
+
+
+
+
+
+
     private void controlAnimation(Control con){
         Path path = new Path();
         double x = con.getScaleX() + con.getWidth() / 2;
@@ -294,11 +332,11 @@ public class StartViewController {
     }
 
 
-    
+
 
     public enum Identity{
-        Student,
-        Teacher,
-        Administrator
+        student,
+        teacher,
+        administrator
     }
 }

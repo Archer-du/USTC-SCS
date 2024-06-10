@@ -58,7 +58,6 @@ public class StudentListViewController implements IListViewController {
     private void updateUserInfo(){
         userName.setText(currentUser.getName());
         userID.setText(currentUser.getID());
-        gender.setText(null);
         major.setText(null);
         department.setText(null);
         updateTime.setText(null);
@@ -75,7 +74,6 @@ public class StudentListViewController implements IListViewController {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-//        courses.add(new Course("课程ID", "课程名称", "课程类型", "理论课学时", "实验课学时", "学分"));
             while (rs.next()) {
                 courses.add(new Course(
                         rs.getString("courseId"),
@@ -83,7 +81,9 @@ public class StudentListViewController implements IListViewController {
                         rs.getString("courseType"),
                         rs.getInt("theoryHour"),
                         rs.getInt("labHour"),
-                        rs.getDouble("credit")
+                        rs.getDouble("credit"),
+                        rs.getInt("selectedNum"),
+                        rs.getInt("maxNum")
                 ));
             }
             return courses;
@@ -91,7 +91,6 @@ public class StudentListViewController implements IListViewController {
             throw new RuntimeException(e);
         }
     }
-
     private ArrayList<Course> prepareMyCourseData() {
         try {
             CourseDAOImpl courseDAO = new CourseDAOImpl();
@@ -104,7 +103,6 @@ public class StudentListViewController implements IListViewController {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-//        courses.add(new Course("课程ID", "课程名称", "课程类型", "理论课学时", "实验课学时", "学分"));
             while (rs.next()) {
                 courses.add(new Course(
                         rs.getString("courseId"),
@@ -112,7 +110,9 @@ public class StudentListViewController implements IListViewController {
                         rs.getString("courseType"),
                         rs.getInt("theoryHour"),
                         rs.getInt("labHour"),
-                        rs.getDouble("credit")
+                        rs.getDouble("credit"),
+                        rs.getInt("selectedNum"),
+                        rs.getInt("maxNum")
                 ));
             }
             return courses;
@@ -120,6 +120,10 @@ public class StudentListViewController implements IListViewController {
             throw new RuntimeException(e);
         }
     }
+
+
+
+
     private void setListViewItems(ArrayList<Course> courses) {
         ObservableList<Course> list = FXCollections.observableArrayList(courses);
         listView.setItems(list);
@@ -151,7 +155,6 @@ public class StudentListViewController implements IListViewController {
                 }
             }
         });
-
     }
 
 
@@ -186,11 +189,11 @@ public class StudentListViewController implements IListViewController {
             if(selectDAO.isExist(currentUser.getID(), course.getCourseId())){
                 showMessage("选课失败", "你已经选择了相同的课程！", Alert.AlertType.ERROR);
             }
-            //TODO: 选课数量超出限制
+            //TODO: 选课数量超出限制的处理（查询）
             else if(selectDAO.insert(currentUser.getID(), course.getCourseId())){
-                // TODO: teacher
                 showMessage(
-                        "提示", STR."\n(1)你选择了课程编号为： \{course.getCourseId()} 的课程!\n\n(2)具体信息：\n     [a]课程名称：\{course.getCourseName()}\n     [b]授课老师：\n", Alert.AlertType.INFORMATION);
+                        "提示", STR."\n(1)你选择了课程编号为 \{course.getCourseId()} 的课程!\n\n[a]课程名称：\{course.getCourseName()}\n", Alert.AlertType.INFORMATION);
+                prepareAllCourseData();
             }
             else throw new RuntimeException();
         }
@@ -207,7 +210,6 @@ public class StudentListViewController implements IListViewController {
         SelectImpl selectDAO = new SelectImpl();
         if (course != null) {
             if(selectDAO.delete(currentUser.getID(), course.getCourseId())){
-                // TODO: teacher
                 showMessage(
                         "提示", STR."\n(1)你取消选择了课程编号为： \{course.getCourseId()} 的课程!\n\n(2)具体信息：\n     [a]课程名称：\{course.getCourseName()}\n     [b]授课老师：\n", Alert.AlertType.INFORMATION);
             }
@@ -252,5 +254,4 @@ public class StudentListViewController implements IListViewController {
         pathTransition.setCycleCount(1);
         pathTransition.play();
     }
-
 }
