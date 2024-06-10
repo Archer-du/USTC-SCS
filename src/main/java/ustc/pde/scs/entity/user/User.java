@@ -1,5 +1,7 @@
 package ustc.pde.scs.entity.user;
 
+import ustc.pde.scs.controller.StartViewController;
+
 public class User {
     private String username;     //用户名
     private String password;    //密码
@@ -7,6 +9,10 @@ public class User {
     private String name;    //姓名
     private String email = "";   //电子邮箱
     private String idCard = "";  //身份证号
+
+    private String majorId;
+
+    private String Type;
 
 
     public User() {
@@ -119,5 +125,21 @@ public class User {
 
     public String toString() {
         return "User{username = " + username + ", password = " + password + ", ID = " + ID + ", name = " + name + ", email = " + email + ", idCard = " + idCard + "}";
+    }
+
+    public String getMajorId() {
+        return majorId;
+    }
+
+    public void setMajorId(String majorId) {
+        this.majorId = majorId;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
     }
 }

@@ -19,6 +19,9 @@ public class Course {
     private String classTime;     //上课时间
     private int firstWeek;       //上课首周
 
+    private int selectedNum;
+    private int maxNum;
+
     private ArrayList<Student> studentList;  //选择该课程的学生
     private ArrayList<Teacher> teacherList;  //授课老师
     private ArrayList<Assistant> assistantList;  //助教天团
@@ -49,13 +52,15 @@ public class Course {
         this.firstWeek = firstWeek;
     }
 
-    public Course(String courseId, String courseName, String courseType, int theoryHour, int labHour, double credit) {
+    public Course(String courseId, String courseName, String courseType, int theoryHour, int labHour, double credit, int selectedNum, int maxNum) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseType = courseType;
         this.theoryHour = theoryHour;
         this.labHour = labHour;
         this.credit = credit;
+        this.selectedNum = selectedNum;
+        this.maxNum = maxNum;
     }
 
     /**

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
@@ -11,7 +9,7 @@
    <children>
        <BorderPane prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-               <AnchorPane fx:id="mainPane" styleClass="mainPanel" prefHeight="1080.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+               <AnchorPane fx:id="mainPane" prefHeight="1080.0" prefWidth="1920.0" styleClass="mainPanel" BorderPane.alignment="CENTER">
                   <children>
                   <AnchorPane layoutX="1594.0" layoutY="14.0" prefHeight="90.0" prefWidth="357.0" styleClass="panel" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <children>
@@ -73,7 +71,7 @@
                              </Label>
                          </children>
                       </AnchorPane>
-                      <AnchorPane fx:id="registerPanel" layoutX="481.0" layoutY="122.0" prefHeight="897.0" prefWidth="990.0" styleClass="panel" visible="false" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="160.0">
+                      <AnchorPane fx:id="registerPanel" layoutX="481.0" layoutY="122.0" prefHeight="897.0" prefWidth="990.0" styleClass="panel" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="160.0">
                           <children>
                               <Label alignment="CENTER" blendMode="DARKEN" cache="true" mnemonicParsing="true" opacity="0.69" prefHeight="178.0" prefWidth="510.0" text="register" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                   <font>
@@ -93,30 +91,16 @@
                            <children>
                               <AnchorPane>
                                  <children>
-                                          <Label layoutY="5.0" text="学号" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
+                                          <Label layoutY="5.0" text="ID" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                          <TextField fx:id="registerID" prefHeight="30.0" prefWidth="300.0" styleClass="enterZone" AnchorPane.rightAnchor="0.0" />
+                                          <TextField fx:id="registerID" prefHeight="30.0" prefWidth="250.0" promptText="学生前缀PB，教师前缀TA" styleClass="enterZone" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <ChoiceBox fx:id="IDPrefixBox" layoutX="140.0" prefHeight="30.0" prefWidth="50.0" styleClass="enterZone" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="30.0" prefWidth="427.0" GridPane.rowIndex="1">
-                                 <children>
-                                          <Label text="性别" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <AnchorPane layoutY="45.0" prefHeight="30.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" GridPane.rowIndex="1">
-                                       <children>
-                                                <CheckBox id="sex" fx:id="female" onAction="#checkGenderFemale" layoutX="109.0" mnemonicParsing="false" text="女" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0" />
-                                                <CheckBox id="sex" fx:id="male" onAction="#checkGenderMale" mnemonicParsing="false" selected="true" text="男" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="5.0" />
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane GridPane.rowIndex="2">
+                              <AnchorPane GridPane.rowIndex="1">
                                  <children>
                                           <Label text="姓名" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
                                        <font>
@@ -126,14 +110,14 @@
                                           <TextField fx:id="registerName" prefHeight="30.0" prefWidth="300.0" promptText="你的真实姓名" styleClass="enterZone" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane GridPane.rowIndex="3">
+                              <AnchorPane GridPane.rowIndex="2">
                                  <children>
-                                          <Label text="专业" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
+                                          <Label text="院系" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                          <TextField fx:id="registerMajor" layoutY="145.0" prefHeight="30.0" prefWidth="300.0" promptText="你的专业" styleClass="enterZone" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" GridPane.rowIndex="3" />
+                                    <ChoiceBox fx:id="majorsBox" layoutX="220.0" layoutY="3.0" prefHeight="30.0" prefWidth="300.0" styleClass="enterZone" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                            </children>
