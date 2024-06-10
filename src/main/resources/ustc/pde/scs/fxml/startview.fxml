@@ -54,12 +54,12 @@
                            <children>
                                    <TextField fx:id="sidEnterZone" alignment="CENTER" layoutX="44.0" layoutY="282.0" prefHeight="50.0" prefWidth="420.0" styleClass="enterZone" text="" GridPane.rowIndex="1" />
                                    <PasswordField fx:id="passwordEnterZone" alignment="CENTER" layoutX="49.0" layoutY="420.0" prefHeight="50.0" prefWidth="420.0" styleClass="enterZone" text="" GridPane.rowIndex="3" />
-                                   <Label layoutX="49.0" layoutY="236.0" prefHeight="24.0" prefWidth="415.0" text="username：">
+                                   <Label layoutX="49.0" layoutY="236.0" prefHeight="24.0" prefWidth="415.0" text="username：" >
                                        <font>
                                            <Font size="20.0" />
                                        </font>
                                    </Label>
-                                   <Label layoutX="49.0" layoutY="382.0" prefHeight="27.0" prefWidth="414.0" text="password:" GridPane.rowIndex="2">
+                                   <Label layoutX="49.0" layoutY="382.0" prefHeight="27.0" prefWidth="414.0" text="password:" GridPane.rowIndex="2" >
                                        <font>
                                            <Font size="20.0" />
                                        </font>

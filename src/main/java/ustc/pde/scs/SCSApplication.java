@@ -15,7 +15,7 @@ public class SCSApplication extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/startview.fxml"));
         Parent root = loader.load();
 
-        primaryStage.setScene(new Scene(root, 1920, 1080));
+        primaryStage.setScene(new Scene(root, 2220, 1080));
         primaryStage.setTitle("USTC SCS");
 
         primaryStage.setResizable(false);

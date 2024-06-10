@@ -33,7 +33,7 @@ drop table if exists selectGrade;
 /*==============================================================*/
 /* Table: Assist                                                */
 /*==============================================================*/
-create table Assist
+/*create table Assist
 (
     ID                   varchar(12) not null,
     courseId             varchar(12) not null,
@@ -43,7 +43,7 @@ create table Assist
 /*==============================================================*/
 /* Table: Assistant                                             */
 /*==============================================================*/
-create table Assistant
+/*create table Assistant
 (
     ID                   varchar(12) not null,
     primary key (ID)
@@ -67,6 +67,7 @@ create table Course
     firstWeek            int not null,
     maxNum				 int ,
     gradeMeans           varchar(10),
+    selectedNum			 int,
     primary key (courseId)
 );
 
@@ -84,7 +85,7 @@ create table Major
 /*==============================================================*/
 /* Table: Student                                               */
 /*==============================================================*/
-create table Student
+/*create table Student
 (
     ID                   varchar(12) not null,
     majorId              varchar(10) not null,
@@ -108,7 +109,7 @@ create table Teach
 /*==============================================================*/
 /* Table: Teacher                                               */
 /*==============================================================*/
-create table Teacher
+/*create table Teacher
 (
     ID                   varchar(12) not null,
     -- teaName              varchar(20) not null,
@@ -126,14 +127,41 @@ create table Users
     idCard               varchar(18),
     ID                   varchar(12) not null,
     email                varchar(30),
-    name					varchar(20) not null,
+    name				 varchar(20) not null,
+    Date                 varchar(20) not null,
+    Type                 varchar(10) not null,
+
+    majorId              varchar(10) not null,
+    curSemester          varchar(10) not null,
+    stuType              varchar(6) not null,
     primary key (ID)
 );
 
 /*==============================================================*/
+/* 添加三种用户的视图                                                  */
+/*==============================================================*/
+create view Student
+as
+select *
+from Users
+where Type='student';
+
+create view Teacher
+as
+select *
+from Users
+where Type='teacher';
+
+create view Administrator
+as
+select *
+from Users
+where Type='administrator';
+
+/*==============================================================*/
 /* Table: administrator                                         */
 /*==============================================================*/
-create table administrator
+/*create table administrator
 (
     ID                   varchar(12) not null,
     -- admName              varchar(20) not null,
@@ -161,41 +189,32 @@ create table selectGrade
     primary key (ID, courseId)
 );
 
-alter table Assist add constraint FK_Assist foreign key (ID)
-    references Assistant (ID) on delete cascade;
+/*alter table Assist add constraint FK_Assist foreign key (ID)
+    references Assistant (ID) on delete cascade;*/
 
-alter table Assist add constraint FK_Assist2 foreign key (courseId)
-    references Course (courseId) on delete cascade;
+/*alter table Assist add constraint FK_Assist2 foreign key (courseId)
+    references Course (courseId) on delete cascade;*/
 
-alter table Assistant add constraint FK_stu_ass foreign key (ID)
-    references Student (ID) on delete cascade;
+/*alter table Assistant add constraint FK_stu_ass foreign key (ID)
+    references Student (ID) on delete cascade;*/
 
-alter table Student add constraint FK_major foreign key (majorId)
+alter table Users add constraint FK_major foreign key (majorId)
     references Major (majorId) on delete cascade;
-
-alter table Student add constraint FK_user_stu foreign key (ID)
-    references Users (ID) on delete cascade;
 
 alter table Teach add constraint FK_Teach foreign key (courseId)
     references Course (courseId) on delete cascade;
 
 alter table Teach add constraint FK_Teach2 foreign key (ID)
-    references Teacher (ID) on delete cascade;
-
-alter table Teacher add constraint FK_user_teacher foreign key (ID)
-    references Users (ID) on delete cascade;
-
-alter table administrator add constraint FK_user_administrator foreign key (ID)
     references Users (ID) on delete cascade;
 
 alter table selectCourse add constraint FK_selectCourse foreign key (ID)
-    references Student (ID) on delete cascade;
+    references Users (ID) on delete cascade;
 
 alter table selectCourse add constraint FK_selectCourse2 foreign key (courseId)
     references Course (courseId) on delete cascade;
 
 alter table selectGrade add constraint FK_selectGrade foreign key (ID)
-    references Student (ID) on delete cascade;
+    references Users (ID) on delete cascade;
 
 alter table selectGrade add constraint FK_selectGrade2 foreign key (courseId)
     references Course (courseId) on delete cascade;
