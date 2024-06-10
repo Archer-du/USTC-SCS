@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ustc.pde.scs.controller.StartViewController;
 
 public class SCSApplication extends Application {
     public static Stage primaryStage;
@@ -22,9 +23,8 @@ public class SCSApplication extends Application {
         //primaryStage.setMaximized(true);
         primaryStage.show();
 
-        // test sql connection
-        //DataBaseConnector connector = new DataBaseConnector();
-        //connector.getConnection();
+        StartViewController controller = loader.getController();
+        controller.initialize();
     }
 
     public static void main(String[] args) {

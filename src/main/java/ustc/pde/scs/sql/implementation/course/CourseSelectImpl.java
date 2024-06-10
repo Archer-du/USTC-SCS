@@ -36,9 +36,9 @@ public class CourseSelectImpl extends CourseDAOImpl{
     }
 
 
-    public ArrayList<CourseSelect> getAll() {
-        String sql = "select courseId,courseName,courseType,theoryHour," +
-                "labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum from Course";
-        return getInstance2(CourseSelect.class,sql);
-    }
+//    public ArrayList<CourseSelect> getAll() {
+//        String sql = "select courseId,courseName,courseType,theoryHour," +
+//                "labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum from Course";
+//        return getInstance2(CourseSelect.class,sql);
+//    }
 }

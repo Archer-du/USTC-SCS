@@ -87,7 +87,7 @@
     -fx-color: #1a83e1;
 }
 
-#passwordEnterZone:selected{
+#loginPassword:selected{
     -fx-background-color: #FF0000;
 }
 
@@ -144,8 +144,8 @@
 
 
 
-#courseList{
-    -fx-background-color: #F5F5DC;
+#listView{
+    -fx-background-color: #ccd4dc;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
 }
@@ -156,16 +156,17 @@
 
 .list-cell{
     -fx-text-fill: #292e34;
-    -fx-background-color: #F5F5DC;
+    -fx-background-color: #a2aab4;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
+    -fx-pref-height: 50px;
 }
-.list-cell:hover{
+.list-cell:hover {
     -fx-text-fill: #fff;
-    -fx-background-color:#3CB371;
+    -fx-background-color: #c0c7ce;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
-    -fx-effect: dropshadow(three-pass-box, #3CB371,20.0,0.2,0,0);
+    -fx-effect: dropshadow(three-pass-box, #5d5d5d, 5.0, 0.1, 0, 0);
 }
 
 
@@ -197,12 +198,12 @@
 
 
 
-#choose{
+.operateButton{
     -fx-background-color: #708090;
-    -fx-background-radius: 0 20 0 0;
+    -fx-background-radius: 20 20 0 0;
     -fx-border-radius: 0 20 0 0;
 }
-#choose:hover{
+.operateButton:hover{
     -fx-background-color: #7B68EE;
     -fx-effect:dropshadow(three-pass-box, #7B68EE,20.0,0.1,0,0);
     -fx-text-fill: #fff;

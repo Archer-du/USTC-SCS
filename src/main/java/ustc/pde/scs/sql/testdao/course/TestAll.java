@@ -11,13 +11,13 @@ import java.util.ArrayList;
 
 public class TestAll {
     public static void main(String[] args) {
-        ArrayList<CourseSelect> courses = new CourseSelectImpl().getAll();
-        for(Course course: courses){
-            System.out.println(course);
-        }
-        ArrayList<CourseGrade> courseGrades = new CourseGradeImpl().getAll();
-        for(Course course: courseGrades){
-            System.out.println(course);
-        }
+//        ArrayList<CourseSelect> courses = new CourseSelectImpl().getAll();
+//        for(Course course: courses){
+//            System.out.println(course);
+//        }
+//        ArrayList<CourseGrade> courseGrades = new CourseGradeImpl().getAll();
+//        for(Course course: courseGrades){
+//            System.out.println(course);
+//        }
     }
 }

@@ -1,6 +1,5 @@
 package ustc.pde.scs.sql.inter.action;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface SimpleRelation {

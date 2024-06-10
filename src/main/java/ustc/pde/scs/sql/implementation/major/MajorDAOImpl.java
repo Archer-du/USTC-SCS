@@ -1,7 +1,6 @@
 package ustc.pde.scs.sql.implementation.major;
 
 import ustc.pde.scs.entity.major.Major;
-import ustc.pde.scs.entity.user.User;
 import ustc.pde.scs.sql.base.BaseDAO;
 import ustc.pde.scs.sql.inter.major.MajorDAO;
 

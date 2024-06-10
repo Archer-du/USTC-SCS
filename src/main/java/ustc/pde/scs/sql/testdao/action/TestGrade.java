@@ -15,13 +15,13 @@ import java.util.ArrayList;
 
 public class TestGrade {
     public static void main(String[] args) {
-        ArrayList<Student> students = new StudentDAOImpl().getAllStudent();
-        ArrayList<CourseSelect> courses = new CourseSelectImpl().getAll();
-        Student stu = students.getFirst();
-        Course course = courses.getFirst();
-        Score score = new Score(stu.getID(),course.getCourseId(),"99");
-        basicTest(score);
-        advTest(score);
+//        ArrayList<Student> students = new StudentDAOImpl().getAllStudent();
+//        ArrayList<CourseSelect> courses = new CourseSelectImpl().getAll();
+//        Student stu = students.getFirst();
+//        Course course = courses.getFirst();
+//        Score score = new Score(stu.getID(),course.getCourseId(),"99");
+//        basicTest(score);
+//        advTest(score);
     }
     public static void basicTest(Score score){
         GradeImpl grade = new GradeImpl();

@@ -18,12 +18,12 @@ import java.util.ArrayList;
 
 public class TestSelect {
     public static void main(String[] args) {
-        ArrayList<Student> students = new StudentDAOImpl().getAllStudent();
-        ArrayList<CourseSelect> courses = new CourseSelectImpl().getAll();
-        Student stu = students.getFirst();
-        Course course = courses.getFirst();
-        basicTest(stu.getID(),course.getCourseId());
-        advTest(stu.getID(),course.getCourseId());
+//        ArrayList<Student> students = new StudentDAOImpl().getAllStudent();
+//        ArrayList<CourseSelect> courses = new CourseSelectImpl().getAll();
+//        Student stu = students.getFirst();
+//        Course course = courses.getFirst();
+//        basicTest(stu.getID(),course.getCourseId());
+//        advTest(stu.getID(),course.getCourseId());
     }
     public static void basicTest(String id, String courseId){
         SelectImpl select = new SelectImpl();
