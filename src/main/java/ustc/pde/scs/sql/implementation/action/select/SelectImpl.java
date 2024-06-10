@@ -5,6 +5,7 @@ import ustc.pde.scs.sql.implementation.course.CourseSelectImpl;
 import ustc.pde.scs.sql.implementation.user.StudentDAOImpl;
 import ustc.pde.scs.sql.inter.action.Select;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SelectImpl extends BaseDAO implements Select {
@@ -43,4 +44,15 @@ public class SelectImpl extends BaseDAO implements Select {
         return getValue(sql);
     }
 
+    public boolean isExist(String studentID, String courseID){
+        ResultSet rs = null;
+        try {
+            rs = executeQuerySQL("select * " +
+                    "from selectcourse " +
+                    "where ID = ? and courseId = ?", studentID, courseID);
+            return rs.next();
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 }

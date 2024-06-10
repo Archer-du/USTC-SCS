@@ -49,6 +49,15 @@ public class Course {
         this.firstWeek = firstWeek;
     }
 
+    public Course(String courseId, String courseName, String courseType, int theoryHour, int labHour, double credit) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseType = courseType;
+        this.theoryHour = theoryHour;
+        this.labHour = labHour;
+        this.credit = credit;
+    }
+
     /**
      * 获取
      * @return courseId

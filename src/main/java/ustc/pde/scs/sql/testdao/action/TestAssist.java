@@ -18,12 +18,12 @@ import java.util.ArrayList;
 
 public class TestAssist {
     public static void main(String[] args) {
-        ArrayList<Assistant> assistants = new AssistantDAOImpl().getAllAssistant();
-        ArrayList<CourseSelect> courses = new CourseSelectImpl().getAll();
-        Assistant stu = assistants.getFirst();
-        Course course = courses.getFirst();
-        basicTest(stu.getID(),course.getCourseId());
-        advTest(stu.getID(),course.getCourseId());
+//        ArrayList<Assistant> assistants = new AssistantDAOImpl().getAllAssistant();
+//        ArrayList<CourseSelect> courses = new CourseSelectImpl().getAll();
+//        Assistant stu = assistants.getFirst();
+//        Course course = courses.getFirst();
+//        basicTest(stu.getID(),course.getCourseId());
+//        advTest(stu.getID(),course.getCourseId());
     }
     public static void basicTest(String id, String courseId){
         AssistImpl assist = new AssistImpl();

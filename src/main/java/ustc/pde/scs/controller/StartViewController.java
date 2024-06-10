@@ -49,6 +49,9 @@ public class StartViewController {
     public void initialize(){
         cleanLoginPanel();
         cleanRegisterPanel();
+        //TODO:
+        loginID.setText("PB21050988");
+        loginPassword.setText("dpcljl20030723");
     }
 
     public void onLoginConfirm(ActionEvent actionEvent) throws IOException {
@@ -72,9 +75,17 @@ public class StartViewController {
             return;
         }
         if (user.getPassword().equals(rawPassword)) {
-            var result = controlAlert("√" + rawID + "," + rawPassword, "登录成功", Alert.AlertType.INFORMATION);
+            var identity = parseIdentity(rawID);
+            var result = controlAlert("欢迎！" + rawID + "\n" + "你的身份是：" + identity.toString(), "登录成功", Alert.AlertType.INFORMATION);
             if (result.get() == ButtonType.OK) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ustc/pde/scs/fxml/listview.fxml"));
+                String path = null;
+                switch (identity){
+                    case Student -> path = "/ustc/pde/scs/fxml/studentListview.fxml";
+                    case Teacher -> path = "/ustc/pde/scs/fxml/teacherListview.fxml";
+                    case Administrator -> path = "/ustc/pde/scs/fxml/adminListview.fxml";
+                }
+                assert path != null;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
                 Parent root = loader.load();
 
                 var stage = SCSApplication.primaryStage;
@@ -82,7 +93,7 @@ public class StartViewController {
                 stage.setResizable(false);
                 stage.setScene(new Scene(root, 1920, 1080));
                 stage.show();
-                ListViewController controller = loader.getController();
+                IListViewController controller = loader.getController();
                 controller.initialize(rawID);
             }
         }
@@ -221,7 +232,15 @@ public class StartViewController {
         return rawName.matches("[a-zA-Z\\u4e00-\\u9fa5]+");
     }
 
-
+    private Identity parseIdentity(String qualifiedID){
+        if(!checkIDFormat(qualifiedID)){
+            throw new RuntimeException();
+        }
+        if(qualifiedID.matches("PB\\d{8}")) return Identity.Student;
+        if(qualifiedID.matches("TA\\d{3}")) return Identity.Teacher;
+        if(qualifiedID.equals("root")) return Identity.Administrator;
+        return null;
+    }
 
 
     private Optional<ButtonType> controlAlert(String text, String title, Alert.AlertType type) {
@@ -272,5 +291,14 @@ public class StartViewController {
         pathTransition.setNode(con);
         pathTransition.setCycleCount(1);
         pathTransition.play();
+    }
+
+
+    
+
+    public enum Identity{
+        Student,
+        Teacher,
+        Administrator
     }
 }

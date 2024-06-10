@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ustc.pde.scs.controller.ListViewController;
 import ustc.pde.scs.controller.StartViewController;
 
 public class SCSApplication extends Application {

@@ -1,5 +1,6 @@
 package ustc.pde.scs.sql.implementation.course;
 
+import ustc.pde.scs.entity.course.CourseGrade;
 import ustc.pde.scs.sql.base.BaseDAO;
 import ustc.pde.scs.sql.inter.course.CourseDAO;
 import ustc.pde.scs.entity.course.Course;
@@ -11,7 +12,7 @@ public class CourseDAOImpl extends BaseDAO implements CourseDAO {
     @Override
     public boolean insert(Course course) {
         try {
-            String sql = "insert into Course(courseId,courseName,courseType,theoryHour," +
+            String sql = "insert into course(courseId,courseName,courseType,theoryHour," +
                     "labHour,credit,book,courseIntro,openSemester,classTime,firstWeek) " +
                     "values(?,?,?,?,?,?,?,?,?,?,?)";
             executeUpdate(sql,course.getCourseId(),course.getCourseName(),course.getCourseType(),
@@ -70,8 +71,9 @@ public class CourseDAOImpl extends BaseDAO implements CourseDAO {
     }
 
 
-    public <T> ArrayList<T>  getAll() {
-        return null;
+    public ArrayList<Course> getAll() {
+        String sql = "select * from course";
+        return getInstance2(Course.class, sql);
     }
 
     @Override
