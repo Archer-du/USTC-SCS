@@ -201,7 +201,7 @@ public class StudentListViewController implements IListViewController {
         if (course != null) {
             if(selectDAO.delete(currentUser.getID(), course.getCourseId())){
                 showMessage(
-                        "提示", STR."\n(1)你取消选择了课程编号为： \{course.getCourseId()} 的课程!\n\n(2)具体信息：\n     [a]课程名称：\{course.getCourseName()}\n     [b]授课老师：\n", Alert.AlertType.INFORMATION);
+                        "提示", STR."\n(1)你取消选择了课程编号为： \{course.getCourseId()} 的课程!\n\n(2)具体信息：\n     [a]课程名称：\{course.getCourseName()}\n     [b]授课老师：\{new UserDAOImpl().getTeacher(course.getCourseId()).getName()}\n", Alert.AlertType.INFORMATION);
                 course.setSelectedNum(course.getSelectedNum()-1);
                 courseDAO.update(course);
                 prepareAllCourseData();
