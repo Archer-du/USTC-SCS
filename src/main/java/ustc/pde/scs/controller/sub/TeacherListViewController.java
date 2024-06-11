@@ -3,19 +3,24 @@ package ustc.pde.scs.controller.sub;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import org.w3c.dom.ls.LSInput;
 import ustc.pde.scs.controller.IListViewController;
 import ustc.pde.scs.entity.course.Course;
 import ustc.pde.scs.entity.user.User;
+import ustc.pde.scs.sql.implementation.action.select.CsSelectImpl;
 import ustc.pde.scs.sql.implementation.action.select.SelectImpl;
 import ustc.pde.scs.sql.implementation.course.CourseDAOImpl;
+import ustc.pde.scs.sql.implementation.major.MajorDAOImpl;
 import ustc.pde.scs.sql.implementation.user.UserDAOImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TeacherListViewController implements IListViewController {
     public ImageView image;
@@ -24,14 +29,15 @@ public class TeacherListViewController implements IListViewController {
     public Label userID;
     public Label userName;
     public Label department;
-    public ListView listView;
-
+    public ListView listViewCourse;
+    public ListView listViewStudent;
     private User currentUser;
     @Override
     public void initialize(String userID) {
         UserDAOImpl userDAO = new UserDAOImpl();
         currentUser = userDAO.getObject(userID);
-        listView.setVisible(false);
+        listViewCourse.setVisible(false);
+        listViewStudent.setVisible(false);
         updateUserInfo();
     }
     // TODO
@@ -42,75 +48,116 @@ public class TeacherListViewController implements IListViewController {
     }
 
 
-    private ArrayList<Course> prepareMyStudentData() {
-        try {
-            CourseDAOImpl courseDAO = new CourseDAOImpl();
-            ArrayList<Course> courses = new ArrayList<>();
-            ResultSet rs = null;
-            try {
-                rs = courseDAO.executeQuerySQL("select * from course");
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+    private HashMap<User,Course> prepareMyStudentData() {
+
+        ArrayList<Course> courses = new CourseDAOImpl().getCourses(currentUser.getID());
+        HashMap<User,Course> students = new HashMap<>();
+        CsSelectImpl csSelect = new CsSelectImpl();
+        for(Course course: courses){
+            for(User student: csSelect.getAll(course.getCourseId())){
+                students.put(student,course);
             }
-//        courses.add(new Course("课程ID", "课程名称", "课程类型", "理论课学时", "实验课学时", "学分"));
-            while (rs.next()) {
-                courses.add(new Course(
-                        rs.getString("courseId"),
-                        rs.getString("courseName"),
-                        rs.getString("courseType"),
-                        rs.getInt("theoryHour"),
-                        rs.getInt("labHour"),
-                        rs.getDouble("credit"),
-                        rs.getInt("selectedNum"),
-                        rs.getInt("maxNum")
-                ));
-            }
-            return courses;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
+        return students;
     }
 
-    private ArrayList<Course> prepareMyCourseData() {
-        try {
-            CourseDAOImpl courseDAO = new CourseDAOImpl();
-            ArrayList<Course> courses = new ArrayList<>();
-            ResultSet rs = null;
-            try {
-                rs = courseDAO.executeQuerySQL("select course.courseId, courseName, courseType, theoryHour, labHour, credit " +
-                        "from selectcourse, course " +
-                        "where selectcourse.ID = ? and selectcourse.courseId = course.courseId", currentUser.getID());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+    private ArrayList<Course> prepareMyCourseData(){
+        return new CourseDAOImpl().getCourses(currentUser.getID());
+    }
+    private void setListViewItems(HashMap<User,Course> students){
+        var studentSet = students.keySet();
+        ArrayList<User> studentList = new ArrayList<>(studentSet);
+        studentList.add(0,null);
+        ObservableList<User> list = FXCollections.observableArrayList(studentList);
+        listViewStudent.setItems(list);
+        listViewStudent.setPrefWidth(400);
+        listViewStudent.setCellFactory(listViewStudent -> new ListCell<User>(){
+            int i = 0;
+            protected void updateItem (User user, boolean empty){
+                super.updateItem(user,empty);
+                if(empty || user == null){
+                    if(i!=0){
+                        HBox hbox = new HBox();
+                        Label courseIdHead = new Label("课程号");
+                        Label courseNameHead = new Label("课程名");
+                        Label studentIdHead = new Label("学号");
+                        Label studentNameHead = new Label("学生姓名");
+                        Label studentMajorHead = new Label("专业院系");
+
+                        courseNameHead.setMinWidth(200);
+                        courseIdHead.setMinWidth(100);
+                        studentIdHead.setMinWidth(100);
+                        studentNameHead.setMinWidth(100);
+                        studentMajorHead.setMinWidth(200);
+                        hbox.getChildren().addAll(courseIdHead,courseNameHead,studentMajorHead,studentIdHead,studentNameHead);
+                        setGraphic(hbox);
+                    }else{
+                        setGraphic(null);
+                    }
+                    i += 1 ;
+                }
+                else {
+
+                    HBox hbox = new HBox();
+                    var course = students.get(user);
+                    Label courseIdLabel = new Label(course.getCourseId());
+                    Label courseNameLabel = new Label(course.getCourseName());
+                    Label studentIdLabel = new Label(user.getID());
+                    Label studentNameLabel = new Label(user.getName());
+                    Label studentMajorLabel = new Label(new MajorDAOImpl().getObject(user.getMajorId()).getMajorName());
+
+                    courseNameLabel.setMinWidth(200);
+                    courseIdLabel.setMinWidth(100);
+                    studentIdLabel.setMinWidth(100);
+                    studentNameLabel.setMinWidth(100);
+                    studentMajorLabel.setMinWidth(200);
+                    hbox.getChildren().addAll(courseIdLabel,courseNameLabel,studentMajorLabel,studentIdLabel,studentNameLabel);
+                    setGraphic(hbox);
+
+                }
             }
-//        courses.add(new Course("课程ID", "课程名称", "课程类型", "理论课学时", "实验课学时", "学分"));
-            while (rs.next()) {
-                courses.add(new Course(
-                        rs.getString("courseId"),
-                        rs.getString("courseName"),
-                        rs.getString("courseType"),
-                        rs.getInt("theoryHour"),
-                        rs.getInt("labHour"),
-                        rs.getDouble("credit"),
-                        rs.getInt("selectedNum"),
-                        rs.getInt("maxNum")
-                ));
-            }
-            return courses;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        });
+
     }
     private void setListViewItems(ArrayList<Course> courses) {
+        courses.add(0,null);
         ObservableList<Course> list = FXCollections.observableArrayList(courses);
-        listView.setItems(list);
-        listView.setPrefWidth(400);
-        listView.setCellFactory(listView -> new ListCell<Course>() {
+        listViewCourse.setItems(list);
+        listViewCourse.setPrefWidth(400);
+
+        listViewCourse.setCellFactory(listViewCourse -> new ListCell<Course>() {
+            int i = 0;
             @Override
             protected void updateItem(Course course, boolean empty) {
                 super.updateItem(course, empty);
+
                 if (empty || course == null) {
-                    setGraphic(null);
+                    if(i!=0){
+                        HBox hboxHead = new HBox();
+                        Label courseIdHead = new Label("课程号");
+                        Label courseNameHead = new Label("课程名");
+                        Label courseTypeHead = new Label("选修/必修");
+                        Label theoryHourHead = new Label("理论课学时");
+                        Label labHourHead = new Label("实验课学时");
+                        Label creditHead = new Label("学分");
+                        Label numHead = new Label("已选人数/人数上限");
+                        Label gradeMeansHead = new Label("评分方式");
+                        courseIdHead.setMinWidth(100);
+                        courseNameHead.setMinWidth(200);
+                        courseTypeHead.setMinWidth(100);
+                        theoryHourHead.setMinWidth(100);
+                        labHourHead.setMinWidth(100);
+                        creditHead.setMinWidth(50);
+                        numHead.setMinWidth(100);
+                        gradeMeansHead.setMinWidth(200);
+                        gradeMeansHead.setAlignment(Pos.CENTER);
+                        hboxHead.getChildren().addAll(courseIdHead,courseNameHead,courseTypeHead,theoryHourHead,labHourHead,creditHead,numHead,gradeMeansHead);
+                        numHead.setAlignment(Pos.CENTER);
+                        setGraphic(hboxHead);
+                    }else {
+                        setGraphic(null);
+                    }
+                    i += 1;
                 } else {
                     HBox hbox = new HBox();
                     Label courseIdLabel = new Label(course.getCourseId());
@@ -119,20 +166,23 @@ public class TeacherListViewController implements IListViewController {
                     Label theoryHourLabel = new Label(String.valueOf(course.getTheoryHour()));
                     Label labHourLabel = new Label(String.valueOf(course.getLabHour()));
                     Label creditLabel = new Label(String.format("%.2f", course.getCredit()));
-
+                    Label NumLabel = new Label(String.valueOf(course.getSelectedNum())+ "/" + String.valueOf(course.getMaxNum()));
+                    Label gradeMeansLabel = new Label(course.getGradeMeans());
                     courseIdLabel.setMinWidth(100);
                     courseNameLabel.setMinWidth(200);
                     courseTypeLabel.setMinWidth(100);
-                    theoryHourLabel.setMinWidth(50);
-                    labHourLabel.setMinWidth(50);
+                    theoryHourLabel.setMinWidth(100);
+                    labHourLabel.setMinWidth(100);
                     creditLabel.setMinWidth(50);
-
-                    hbox.getChildren().addAll(courseIdLabel, courseNameLabel, courseTypeLabel, theoryHourLabel, labHourLabel, creditLabel);
+                    NumLabel.setMinWidth(100);
+                    NumLabel.setAlignment(Pos.CENTER);
+                    gradeMeansLabel.setMinWidth(200);
+                    gradeMeansLabel.setAlignment(Pos.CENTER);
+                    hbox.getChildren().addAll(courseIdLabel, courseNameLabel, courseTypeLabel, theoryHourLabel, labHourLabel, creditLabel,NumLabel,gradeMeansLabel);
                     setGraphic(hbox);
                 }
             }
         });
-
     }
 
 
@@ -154,8 +204,14 @@ public class TeacherListViewController implements IListViewController {
 
 
     public void OnShowMyCoursesCommand(ActionEvent actionEvent) {
+        setListViewItems(prepareMyCourseData());
+        listViewCourse.setVisible(true);
+        listViewStudent.setVisible(false);
     }
 
     public void OnShowMyStudentsCommand(ActionEvent actionEvent) {
+        setListViewItems(prepareMyStudentData());
+        listViewStudent.setVisible(true);
+        listViewCourse.setVisible(false);
     }
 }

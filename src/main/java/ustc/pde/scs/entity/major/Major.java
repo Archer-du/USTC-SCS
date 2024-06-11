@@ -1,6 +1,6 @@
 package ustc.pde.scs.entity.major;
 
-import ustc.pde.scs.entity.user.Student;
+import ustc.pde.scs.entity.user.User;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ public class Major {
     private String majorId;     //专业号
     private String majorName;   //专业名称
     private String majorIntro;  //专业介绍
-    private ArrayList<Student> stuList; //当前专业学生
+    private ArrayList<User> stuList; //当前专业学生
     public Major() {
     }
 

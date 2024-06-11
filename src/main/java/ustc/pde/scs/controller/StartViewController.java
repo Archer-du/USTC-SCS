@@ -16,6 +16,7 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
 import ustc.pde.scs.SCSApplication;
+import ustc.pde.scs.entity.major.Major;
 import ustc.pde.scs.entity.user.User;
 import ustc.pde.scs.sql.implementation.major.MajorDAOImpl;
 import ustc.pde.scs.sql.implementation.user.UserDAOImpl;
@@ -50,7 +51,7 @@ public class StartViewController {
     public ChoiceBox<String> majorsBox;
     public HashMap<String, String> majorMap;
 
-    public void initialize() {
+    public void initializeController() {
         majorMap = new HashMap<>();
         prepareIDPrefixData();
         prepareMajorData();
@@ -59,6 +60,7 @@ public class StartViewController {
         cleanRegisterPanel();
 
         loginPanel.setVisible(true);
+        loginID.setPromptText("学号/工号");
         registerPanel.setVisible(false);
     }
 
@@ -68,7 +70,7 @@ public class StartViewController {
         ObservableList<String> list = FXCollections.observableArrayList("PB", "TA");
         IDPrefixBox.setItems(list);
     }
-    private void prepareMajorData(){
+    /*private void prepareMajorData(){
         ArrayList<String> majorNames = new ArrayList<>();
         try {
             MajorDAOImpl majorDAO = new MajorDAOImpl();
@@ -87,6 +89,20 @@ public class StartViewController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        ObservableList<String> list = FXCollections.observableArrayList(majorNames);
+        majorsBox.setItems(list);
+    }*/
+    private void prepareMajorData(){
+        ArrayList<String> majorNames = new ArrayList<>();
+        MajorDAOImpl majorDAO = new MajorDAOImpl();
+        ArrayList<Major> majors = majorDAO.getAll();
+        for(Major major: majors){
+            var id = major.getMajorId();
+            var name = major.getMajorName();
+            majorNames.add(name);
+            majorMap.put(name,id);
+        }
+
         ObservableList<String> list = FXCollections.observableArrayList(majorNames);
         majorsBox.setItems(list);
     }

@@ -13,10 +13,12 @@ public class SCSApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/startview.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ustc/pde/scs/fxml/startview.fxml"));
         Parent root = loader.load();
-
+        //archer
         primaryStage.setScene(new Scene(root, 1920, 1080));
+        //hjs
+        //primaryStage.setScene(new Scene(root,1500,900));
         primaryStage.setTitle("USTC SCS");
 
         primaryStage.setResizable(false);
@@ -24,7 +26,7 @@ public class SCSApplication extends Application {
         primaryStage.show();
 
         StartViewController controller = loader.getController();
-        controller.initialize();
+        controller.initializeController();
     }
 
     public static void main(String[] args) {

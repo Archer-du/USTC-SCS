@@ -77,7 +77,8 @@
                       </Pane>
                   <AnchorPane prefHeight="890.0" prefWidth="1490.0" styleClass="panel" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <children>
-                                <ListView fx:id="listView" layoutX="100.0" layoutY="58.0" prefHeight="812.0" prefWidth="1450.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
+                                <ListView fx:id="listViewStudent" layoutX="100.0" layoutY="58.0" prefHeight="812.0" prefWidth="1450.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
+                                <ListView fx:id="listViewCourse" layoutX="100.0" layoutY="58.0" prefHeight="812.0" prefWidth="1450.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
                      </children>
                   </AnchorPane>
                </children>

@@ -1,11 +1,5 @@
 package ustc.pde.scs.entity.course;
 
-import ustc.pde.scs.entity.user.Assistant;
-import ustc.pde.scs.entity.user.Student;
-import ustc.pde.scs.entity.user.Teacher;
-
-import java.util.ArrayList;
-
 public class Course {
     private String courseId;    //课程号
     private String courseName;  //课程名称
@@ -15,30 +9,16 @@ public class Course {
     private double credit;  //学分
     private String book;    //参考教材
     private String courseIntro; //课程简介
-    private String openSemester;    //开课学期
-    private String classTime;     //上课时间
-    private int firstWeek;       //上课首周
+    private String teacherId;       //老师id
+    private String gradeMeans;  //评分方式
+    private int selectedNum;    //已选人数
+    private int maxNum;         //最大人数
 
-    private int selectedNum;
-    private int maxNum;
 
-    private ArrayList<Student> studentList;  //选择该课程的学生
-    private ArrayList<Teacher> teacherList;  //授课老师
-    private ArrayList<Assistant> assistantList;  //助教天团
     public Course() {
     }
-    public Course(String courseId, String courseName, String courseType, int theoryHour, int labHour, double credit, String openSemester, String classTime, int firstWeek) {
-        this.courseId = courseId;
-        this.courseName = courseName;
-        this.courseType = courseType;
-        this.theoryHour = theoryHour;
-        this.labHour = labHour;
-        this.credit = credit;
-        this.openSemester = openSemester;
-        this.classTime = classTime;
-        this.firstWeek = firstWeek;
-    }
-    public Course(String courseId, String courseName, String courseType, int theoryHour, int labHour, double credit, String book, String courseIntro, String openSemester, String classTime, int firstWeek) {
+
+    public Course(String courseId, String courseName, String courseType, int theoryHour, int labHour, double credit, String book, String courseIntro, String teacherId, String gradeMeans, int selectedNum, int maxNum) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseType = courseType;
@@ -47,18 +27,8 @@ public class Course {
         this.credit = credit;
         this.book = book;
         this.courseIntro = courseIntro;
-        this.openSemester = openSemester;
-        this.classTime = classTime;
-        this.firstWeek = firstWeek;
-    }
-
-    public Course(String courseId, String courseName, String courseType, int theoryHour, int labHour, double credit, int selectedNum, int maxNum) {
-        this.courseId = courseId;
-        this.courseName = courseName;
-        this.courseType = courseType;
-        this.theoryHour = theoryHour;
-        this.labHour = labHour;
-        this.credit = credit;
+        this.teacherId = teacherId;
+        this.gradeMeans = gradeMeans;
         this.selectedNum = selectedNum;
         this.maxNum = maxNum;
     }
@@ -193,55 +163,69 @@ public class Course {
 
     /**
      * 获取
-     * @return openSemester
+     * @return teacherId
      */
-    public String getOpenSemester() {
-        return openSemester;
+    public String getTeacherId() {
+        return teacherId;
     }
 
     /**
      * 设置
-     * @param openSemester
+     * @param teacherId
      */
-    public void setOpenSemester(String openSemester) {
-        this.openSemester = openSemester;
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
     }
 
     /**
      * 获取
-     * @return classTime
+     * @return gradeMeans
      */
-    public String getClassTime() {
-        return classTime;
+    public String getGradeMeans() {
+        return gradeMeans;
     }
 
     /**
      * 设置
-     * @param classTime
+     * @param gradeMeans
      */
-    public void setClassTime(String classTime) {
-        this.classTime = classTime;
+    public void setGradeMeans(String gradeMeans) {
+        this.gradeMeans = gradeMeans;
     }
 
     /**
      * 获取
-     * @return firstWeek
+     * @return selectedNum
      */
-    public int getFirstWeek() {
-        return firstWeek;
+    public int getSelectedNum() {
+        return selectedNum;
     }
 
     /**
      * 设置
-     * @param firstWeek
+     * @param selectedNum
      */
-    public void setFirstWeek(int firstWeek) {
-        this.firstWeek = firstWeek;
+    public void setSelectedNum(int selectedNum) {
+        this.selectedNum = selectedNum;
+    }
+
+    /**
+     * 获取
+     * @return maxNum
+     */
+    public int getMaxNum() {
+        return maxNum;
+    }
+
+    /**
+     * 设置
+     * @param maxNum
+     */
+    public void setMaxNum(int maxNum) {
+        this.maxNum = maxNum;
     }
 
     public String toString() {
-        return "courseId = " + courseId + ", courseName = " + courseName + ", courseType = " + courseType + ", theoryHour = " + theoryHour + ", labHour = " + labHour + ", credit = " + credit + ", book = " + book + ", courseIntro = " + courseIntro + ", openSemester = " + openSemester + ", classTime = " + classTime + ", firstWeek = " + firstWeek ;
+        return "Course{courseId = " + courseId + ", courseName = " + courseName + ", courseType = " + courseType + ", theoryHour = " + theoryHour + ", labHour = " + labHour + ", credit = " + credit + ", book = " + book + ", courseIntro = " + courseIntro + ", teacherId = " + teacherId + ", gradeMeans = " + gradeMeans + ", selectedNum = " + selectedNum + ", maxNum = " + maxNum + "}";
     }
-
-
 }

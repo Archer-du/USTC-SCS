@@ -1,17 +1,17 @@
 package ustc.pde.scs.sql.implementation.action.select;
 
-import ustc.pde.scs.entity.user.Student;
+import ustc.pde.scs.entity.user.User;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CsSelectImpl extends SelectImpl{
     @Override
-    public ArrayList<Student> getAll(String courseId) {  //获取选课学生信息
-        String sql = "select student.ID as ID,studyDate,curSemester,stuType,username,password,idCard,name,email " +
-                "from users,student,selectCourse where users.id = student.id and student.id = selectCourse.id " +
+    public ArrayList<User> getAll(String courseId) {  //获取选课学生信息
+        String sql =  "select username,password,idCard,users.id as ID,email,name,date,type,majorId " +
+                "from users,selectCourse where users.id = selectCourse.id " +
                 "and selectCourse.courseId = ?";
-        return getInstance2(Student.class,sql,courseId);
+        return getInstance2(User.class,sql,courseId);
     }
     public boolean delete(String courseId) {      //一键清空
         try {
@@ -22,8 +22,8 @@ public class CsSelectImpl extends SelectImpl{
             return false;
         }
     }
-    public Long getCount(String id){    //查询当前选课人数
-        String sql = "select count(*) from selectCourse where id =?";
-        return getValue(sql,id);
+    public Long getCount(String courseId){    //查询当前选课人数
+        String sql = "select count(*) from selectCourse where courseId =?";
+        return getValue(sql,courseId);
     }
 }

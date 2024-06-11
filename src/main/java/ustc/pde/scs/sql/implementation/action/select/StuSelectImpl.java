@@ -1,19 +1,18 @@
 package ustc.pde.scs.sql.implementation.action.select;
 
-import ustc.pde.scs.entity.course.CourseGrade;
-import ustc.pde.scs.entity.course.CourseSelect;
+import ustc.pde.scs.entity.course.Course;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class StuSelectImpl extends SelectImpl{
     @Override
-    public ArrayList<CourseSelect> getAll(String id) {  //获取所有已选课程
+    public ArrayList<Course> getAll(String id) {  //获取所有已选课程
         String sql = "select course.courseId as courseId,courseName,courseType,theoryHour," +
-                "labHour,credit,book,courseIntro,openSemester,classTime,firstWeek,maxNum " +
+                "labHour,credit,book,courseIntro,maxNum,gradeMeans,selectedNum,teacherId " +
                 "from Course,selectCourse " +
                 "where course.courseId = selectCourse.courseId and selectCourse.id = ?";
-        return getInstance2(CourseSelect.class,sql,id);
+        return getInstance2(Course.class,sql,id);
     }
 
     public boolean delete(String id) {      //一键退课

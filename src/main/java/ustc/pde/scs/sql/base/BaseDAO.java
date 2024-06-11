@@ -1,6 +1,7 @@
 package ustc.pde.scs.sql.base;
 
 import java.lang.reflect.Field;
+import java.nio.channels.ClosedSelectorException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public abstract class BaseDAO {
     //数据库用户名
     private static String user = "root";
     //数据库密码
-    private static String password = "dpcljl20030723";
+    private static String password = "houge.0404";
 
     //数据库连接
     protected Connection conn = null;
@@ -92,11 +93,13 @@ public abstract class BaseDAO {
                     field.setAccessible(true);
                     field.set(t,columValue);
                 }
+                closeALL(conn,ps,rs);
                 return t;
             }
         }catch (Exception e){
             e.printStackTrace();
         }
+        closeALL(conn,ps,rs);
         return null;
     }
     /**返回多条记录
@@ -136,10 +139,12 @@ public abstract class BaseDAO {
                 }
                 list.add(t);
             }
+            closeALL(conn,ps,rs);
             return list;
         }catch (Exception e){
             e.printStackTrace();
         }
+        closeALL(conn,ps,rs);
         return null;
     }
 
@@ -157,11 +162,13 @@ public abstract class BaseDAO {
             }
             rs = ps.executeQuery();
             if(rs.next()){
+                closeALL(conn,ps,rs);
                 return (E) rs.getObject(1);
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
+        closeALL(conn,ps,rs);
         return null;
     }
 
@@ -188,6 +195,8 @@ public abstract class BaseDAO {
             }
         }
         num = ps.executeUpdate();
+        //ResultSet rs = ps.executeQuery();
+        //closeALL(conn,ps,rs);
         return num;
     }
 

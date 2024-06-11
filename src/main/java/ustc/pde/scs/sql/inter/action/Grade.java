@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public interface Grade extends ObjectDAO {
     boolean insert(Score score) throws SQLException;      //给学生添加成绩
-    boolean delete(String primaryKey) throws SQLException;  //根据pk删除
+    boolean delete(String primaryKey);  //根据pk删除
     boolean update(Score score) throws SQLException;  //修改分数
     Score getObject(String primaryKey); //根据pk查询
     ArrayList<Score> getAll();  //获取全部元素

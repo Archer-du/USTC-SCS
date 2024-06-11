@@ -36,8 +36,8 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
     @Override
     public boolean update(User user) {
         try{
-            String sql = "update users set username = ?,password =?,idCard = ?,email = ?, name = ? where id =?";
-            executeUpdate(sql,user.getUsername(),user.getPassword(),user.getIdCard(),user.getEmail(),user.getName(),user.getID());
+            String sql = "update users set username = ?,password =?,idCard = ?,email = ?, name = ? ,date = ?, type = ?,majorId = ? where id =?";
+            executeUpdate(sql,user.getUsername(),user.getPassword(),user.getIdCard(),user.getEmail(),user.getName(),user.getDate(),user.getType(),user.getMajorId(),user.getID());
             return true;
         }catch (Exception e){
             return false;
@@ -49,6 +49,14 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
     public User getObject(String id) {
         String sql = "select * from users where id = ?";
         return getInstance(User.class,sql,id);
+    }
+    public ArrayList<User> getUsers(String name){       //查询所有名字为name的用户
+        String sql = "select * from users where name = ?";
+        return getInstance2(User.class,sql,name);
+    }
+    public User getTeacher(String courseId){        //获取某课程的老师
+        String sql = "select username,password,idCard,ID,email,name,date,type,majorId from users,course where course.teacherId = users.id and course.courseId = ?";
+        return getInstance(User.class,sql,courseId);
     }
 
     @Override

@@ -76,8 +76,8 @@ create table Users
     ID                   varchar(12) not null,
     email                varchar(30),
     name				 varchar(20) not null,
-    Date                 varchar(20),
-    Type                 varchar(20) not null,
+    date                 varchar(20),
+    type                 varchar(20) not null,
     majorId              varchar(10) not null,
     primary key (ID)
 );
@@ -111,7 +111,7 @@ where Type='administrator';
     ID                   varchar(12) not null,
     -- admName              varchar(20) not null,
     primary key (ID)
-);
+);*/
 
 /*==============================================================*/
 /* Table: selectCourse                                          */

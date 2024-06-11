@@ -10,21 +10,23 @@ public class User {
     private String email = "";   //电子邮箱
     private String idCard = "";  //身份证号
 
-    private String majorId;
-
-    private String Type;
-
+    private String majorId;     //专业号
+    private String date;    //入学日期/工作日期
+    private String type;       //用户类型
 
     public User() {
     }
 
-    public User(String username, String password, String ID, String name, String email, String idCard) {
+    public User(String username, String password, String ID, String name, String email, String idCard, String majorId, String date, String type) {
         this.username = username;
         this.password = password;
         this.ID = ID;
         this.name = name;
         this.email = email;
         this.idCard = idCard;
+        this.majorId = majorId;
+        this.date = date;
+        this.type = type;
     }
 
     /**
@@ -123,23 +125,55 @@ public class User {
         this.idCard = idCard;
     }
 
-    public String toString() {
-        return "User{username = " + username + ", password = " + password + ", ID = " + ID + ", name = " + name + ", email = " + email + ", idCard = " + idCard + "}";
-    }
-
+    /**
+     * 获取
+     * @return majorId
+     */
     public String getMajorId() {
         return majorId;
     }
 
+    /**
+     * 设置
+     * @param majorId
+     */
     public void setMajorId(String majorId) {
         this.majorId = majorId;
     }
 
-    public String getType() {
-        return Type;
+    /**
+     * 获取
+     * @return date
+     */
+    public String getDate() {
+        return date;
     }
 
+    /**
+     * 设置
+     * @param date
+     */
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    /**
+     * 获取
+     * @return type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * 设置
+     * @param type
+     */
     public void setType(String type) {
-        Type = type;
+        this.type = type;
+    }
+
+    public String toString() {
+        return "User{username = " + username + ", password = " + password + ", ID = " + ID + ", name = " + name + ", email = " + email + ", idCard = " + idCard + ", majorId = " + majorId + ", date = " + date + ", type = " + type + "}";
     }
 }

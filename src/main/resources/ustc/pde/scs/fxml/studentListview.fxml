@@ -15,8 +15,10 @@
             <AnchorPane BorderPane.alignment="CENTER">
                <children>
                         <Pane prefHeight="1080.0" prefWidth="1920.0" styleClass="mainPanel" />
-                          <AnchorPane layoutX="420.0" layoutY="10.0" prefHeight="160.0" prefWidth="1490.0" styleClass="panel" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                          <AnchorPane fx:id="selectPane" layoutX="420.0" layoutY="10.0" prefHeight="160.0" prefWidth="1490.0" styleClass="panel" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                               <children>
+                                  <Button fx:id="queryButton" layoutX="1321.0" layoutY="14.0" mnemonicParsing="false" onAction="#OnCourseQuery" prefHeight="40.0" prefWidth="140.0" styleClass="operateButton" text="查询" AnchorPane.topAnchor="14.0" />
+                                  <TextField fx:id = "queryText" layoutX="1200.0" layoutY="14.0"  prefWidth= "100.0" prefHeight="40.0" styleClass="enterZone"  AnchorPane.topAnchor="16.0"></TextField>
                                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="1.0" mnemonicParsing="true" text="USTC SCS" textAlignment="CENTER" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
                                       <font>
                                           <Font name="Consolas" size="48.0" />
