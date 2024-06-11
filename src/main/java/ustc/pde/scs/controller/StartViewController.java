@@ -70,28 +70,7 @@ public class StartViewController {
         ObservableList<String> list = FXCollections.observableArrayList("PB", "TA");
         IDPrefixBox.setItems(list);
     }
-    /*private void prepareMajorData(){
-        ArrayList<String> majorNames = new ArrayList<>();
-        try {
-            MajorDAOImpl majorDAO = new MajorDAOImpl();
-            ResultSet rs = null;
-            try {
-                rs = majorDAO.executeQuerySQL("select * from Major");
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            while (rs.next()) {
-                var id = rs.getString("majorId");
-                var name = rs.getString("majorName");
-                majorNames.add(name);
-                majorMap.put(name, id);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        ObservableList<String> list = FXCollections.observableArrayList(majorNames);
-        majorsBox.setItems(list);
-    }*/
+
     private void prepareMajorData(){
         ArrayList<String> majorNames = new ArrayList<>();
         MajorDAOImpl majorDAO = new MajorDAOImpl();
@@ -122,7 +101,6 @@ public class StartViewController {
             return;
         }
         UserDAOImpl userDAO = new UserDAOImpl();
-        //TODO: 这个方法有bug，用反射机制做也不合理，建议重写
         var user = userDAO.getObject(rawID);
         if (user == null) {
             var result = controlAlert(STR."账号[\{rawID}]不存在！" +
@@ -155,7 +133,7 @@ public class StartViewController {
                 stage.setScene(new Scene(root, 1920, 1080));
                 stage.show();
                 IListViewController controller = loader.getController();
-                controller.initialize(rawID);
+                controller.initialize(rawID, majorMap);
             }
         }
         else {

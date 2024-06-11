@@ -24,17 +24,16 @@ import ustc.pde.scs.sql.implementation.user.UserDAOImpl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StudentListViewController implements IListViewController {
     public ImageView image;
 
     public Label userName;
     public Label userID;
-    public Label gender;
 
     public Label major;
-    public Label department;
-    public Label updateTime;
 
     public AnchorPane selectPane;
 
@@ -49,22 +48,27 @@ public class StudentListViewController implements IListViewController {
     public TextField queryText;
 
     private User currentUser;
+    public HashMap<String, String> majorMap;
 
-    public void initialize(String userID) {
+    public void initialize(String userID, HashMap<String, String> map) {
         UserDAOImpl userDAO = new UserDAOImpl();
         currentUser = userDAO.getObject(userID);
         listView.setVisible(false);
         chooseButton.setVisible(false);
         cancelButton.setVisible(false);
+
+        majorMap = new HashMap<>();
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            majorMap.put(entry.getValue(), entry.getKey());
+        }
+
         updateUserInfo();
     }
     // TODO
     private void updateUserInfo(){
         userName.setText(currentUser.getName());
         userID.setText(currentUser.getID());
-        major.setText(null);
-        department.setText(null);
-        updateTime.setText(null);
+        major.setText(majorMap.get(currentUser.getMajorId()));
     }
 
     private ArrayList<Course> prepareAllCourseData(){

@@ -21,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class TeacherListViewController implements IListViewController {
     public ImageView image;
@@ -32,19 +33,26 @@ public class TeacherListViewController implements IListViewController {
     public ListView listViewCourse;
     public ListView listViewStudent;
     private User currentUser;
+    public HashMap<String, String> majorMap;
     @Override
-    public void initialize(String userID) {
+    public void initialize(String userID, HashMap<String, String> map) {
         UserDAOImpl userDAO = new UserDAOImpl();
         currentUser = userDAO.getObject(userID);
         listViewCourse.setVisible(false);
         listViewStudent.setVisible(false);
+
+        majorMap = new HashMap<>();
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            majorMap.put(entry.getValue(), entry.getKey());
+        }
+
         updateUserInfo();
     }
     // TODO
     private void updateUserInfo(){
         userName.setText(currentUser.getName());
         userID.setText(currentUser.getID());
-        department.setText(null);
+        department.setText(majorMap.get(currentUser.getMajorId()));
     }
 
 
