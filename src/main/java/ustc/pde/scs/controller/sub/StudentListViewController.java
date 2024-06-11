@@ -40,12 +40,12 @@ public class StudentListViewController implements IListViewController {
     public ListView listView;
     public Button chooseButton;
 
-    public Button queryButton;
     public Button showAllCourseButton;
     public Button showMyCourseButton;
 
     public Button cancelButton;
     public TextField queryText;
+    public Button queryButton;
 
     private User currentUser;
     public HashMap<String, String> majorMap;
@@ -56,6 +56,8 @@ public class StudentListViewController implements IListViewController {
         listView.setVisible(false);
         chooseButton.setVisible(false);
         cancelButton.setVisible(false);
+        queryText.setVisible(false);
+        queryButton.setVisible(false);
 
         majorMap = new HashMap<>();
         for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -221,6 +223,8 @@ public class StudentListViewController implements IListViewController {
 
     public void OnShowAllCoursesCommand(ActionEvent actionEvent)  {
         setListViewItems(prepareAllCourseData());
+        queryText.setVisible(true);
+        queryButton.setVisible(true);
         listView.setVisible(true);
         chooseButton.setVisible(true);
         cancelButton.setVisible(false);
@@ -228,6 +232,8 @@ public class StudentListViewController implements IListViewController {
 
     public void OnShowMyCoursesCommand(ActionEvent actionEvent) {
         setListViewItems(prepareMyCourseData());
+        queryText.setVisible(true);
+        queryButton.setVisible(true);
         listView.setVisible(true);
         chooseButton.setVisible(false);
         cancelButton.setVisible(true);
